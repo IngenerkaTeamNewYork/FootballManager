@@ -7,6 +7,8 @@ int main() {
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
 
+    int currentPlayer = 0;
+
     std::vector<Footballer> Players = {
             Footballer({5, 5}, 20, sf::Color::Red),
             Footballer({6, 6}, 20, sf::Color::Red),
@@ -24,13 +26,20 @@ int main() {
                 window.close();
             }
             if (event.type == sf::Event::MouseMoved) {
-                for (auto a : Players) {
-                    a.mouseMove(event.mouseMove.x - a.getRadius(), event.mouseMove.y - a.getRadius());
+                if (currentPlayer < Players.size()) {
+                    Players[currentPlayer].mouseMove(event.mouseMove.x - Players[currentPlayer].getRadius(),
+                                                     event.mouseMove.y - Players[currentPlayer].getRadius());
+                } else {
+                    window.close();
                 }
+
             }
             if (event.type == sf::Event::MouseButtonPressed) {
-                for (auto a : Players) {
-                    a.mouseClick();
+                Players[currentPlayer].mouseClick();
+                if (currentPlayer < Players.size()) {
+                    currentPlayer++;
+                } else {
+                    window.close();
                 }
             }
         }
