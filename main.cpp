@@ -3,16 +3,17 @@
 #include "Footballer.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(500, 500), "Window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
     window.setVerticalSyncEnabled(true);
 
-    sf::Image ballText;
-    ballText.loadFromFile("../ball.png");
+    std::array<Footballer, 5> Players = {
+            Footballer({5, 5}, 20, sf::Color::Red),
+            Footballer({5, 5}, 20, sf::Color::Red),
+            Footballer({5, 5}, 20, sf::Color::Red),
+            Footballer({5, 5}, 20, sf::Color::Red),
+            Footballer({5, 5}, 20, sf::Color::Red)
+    };
 
-    sf::Texture ball;
-    ball.loadFromImage(ballText);
-
-    Footballer Player({5,5}, 60, ball);
     // Главный цикл приложения
     while (window.isOpen()) {
         // Обрабатываем события в цикле
@@ -23,19 +24,25 @@ int main() {
                 (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
                 window.close();
             }
-            if (event.type == sf::Event::MouseMoved) {
-                Player.mouseMove(event.mouseMove.x - Player.getRadius(), event.mouseMove.y - Player.getRadius());
-            }
+            std::for_each(std::begin(Players), std::begin(Players) + 10, [&](Footballer a) {
+                if (event.type == sf::Event::MouseMoved and a.following) {
+                    a.mouseMove(event.mouseMove.x - a.getRadius(), event.mouseMove.y - a.getRadius());
+                }
+                if (event.type == sf::Event::MouseButtonPressed) {
+                    a.mouseClick();
+                }
+            });
         }
 
         // Очистка
         window.clear();
-        window.draw(Player);
+        std::for_each(std::begin(Players), std::begin(Players) + 10, [&](Footballer a) {
+            window.draw(a);
+        });
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
         window.display();
     }
     window.close();
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }

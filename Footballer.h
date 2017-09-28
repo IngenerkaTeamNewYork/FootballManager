@@ -13,10 +13,14 @@ private:
     sf::CircleShape footballer;
     int radius;
 public:
-    Footballer(const sf::Vector2f pos, int radius, sf::Texture player) {
+    bool following = true;
+
+    Footballer(const sf::Vector2f pos, int radius, sf::Color fillColor, sf::Color outlineColor = sf::Color::White) {
         this->radius = radius;
-        this->footballer.setFillColor(sf::Color(0,0,255,100));
-        this->footballer.setTexture(&player, true); // not working
+
+        this->footballer.setFillColor(fillColor);
+        this->footballer.setOutlineColor(outlineColor);
+        this->footballer.setOutlineThickness(5);
         this->footballer.setPosition(pos);
         this->footballer.setRadius(this->radius);
     }
@@ -29,8 +33,12 @@ public:
         this->footballer.setPosition(x, y);
     }
 
+    void mouseClick() {
+        this->following = false;
+    }
+
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const {
-        target.draw(footballer, states);
+        target.draw(this->footballer, states);
     }
 };
 
