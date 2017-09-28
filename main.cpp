@@ -3,16 +3,18 @@
 #include "Footballer.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(500, 500), "Window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
     window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(60);
 
-    sf::Image ballText;
-    ballText.loadFromFile("../ball.png");
+    int currentPlayer = 0;
 
-    sf::Texture ball;
-    ball.loadFromImage(ballText);
+    std::vector<Footballer> Players = {
+            Footballer({5, 5}, 20, sf::Color::Red),
+            Footballer({6, 6}, 20, sf::Color::Red),
+            Footballer({7, 7}, 20, sf::Color::Red)
+    };
 
-    Footballer Player({5,5}, 60, ball);
     // Главный цикл приложения
     while (window.isOpen()) {
         // Обрабатываем события в цикле
@@ -24,18 +26,33 @@ int main() {
                 window.close();
             }
             if (event.type == sf::Event::MouseMoved) {
-                Player.mouseMove(event.mouseMove.x - Player.getRadius(), event.mouseMove.y - Player.getRadius());
+                if (currentPlayer < Players.size()) {
+                    Players[currentPlayer].mouseMove(event.mouseMove.x - Players[currentPlayer].getRadius(),
+                                                     event.mouseMove.y - Players[currentPlayer].getRadius());
+                } else {
+                    window.close();
+                }
+
+            }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                Players[currentPlayer].mouseClick();
+                if (currentPlayer < Players.size()) {
+                    currentPlayer++;
+                } else {
+                    window.close();
+                }
             }
         }
-
         // Очистка
         window.clear();
-        window.draw(Player);
+        for (auto b : Players) {
+            window.draw(b);
+        }
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
         window.display();
     }
+
     window.close();
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
