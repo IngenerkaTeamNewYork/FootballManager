@@ -4,7 +4,7 @@ project(FootballManager)
 set(CMAKE_CXX_STANDARD 11)
 link_libraries(sfml-graphics sfml-window sfml-system)
 
-add_definitions("-g")
+add_definitions("-O3")
 
 set(SOURCE_FILES Footballer.h main.cpp)
 add_executable(FootballManager ${SOURCE_FILES})

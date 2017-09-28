@@ -5,13 +5,12 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
     window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(60);
 
-    std::array<Footballer, 5> Players = {
+    std::vector<Footballer> Players = {
             Footballer({5, 5}, 20, sf::Color::Red),
-            Footballer({5, 5}, 20, sf::Color::Red),
-            Footballer({5, 5}, 20, sf::Color::Red),
-            Footballer({5, 5}, 20, sf::Color::Red),
-            Footballer({5, 5}, 20, sf::Color::Red)
+            Footballer({6, 6}, 20, sf::Color::Red),
+            Footballer({7, 7}, 20, sf::Color::Red)
     };
 
     // Главный цикл приложения
@@ -24,25 +23,27 @@ int main() {
                 (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
                 window.close();
             }
-            std::for_each(std::begin(Players), std::begin(Players) + 10, [&](Footballer a) {
-                if (event.type == sf::Event::MouseMoved and a.following) {
+            if (event.type == sf::Event::MouseMoved) {
+                for (auto a : Players) {
                     a.mouseMove(event.mouseMove.x - a.getRadius(), event.mouseMove.y - a.getRadius());
                 }
-                if (event.type == sf::Event::MouseButtonPressed) {
+            }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                for (auto a : Players) {
                     a.mouseClick();
                 }
-            });
+            }
         }
-
         // Очистка
         window.clear();
-        std::for_each(std::begin(Players), std::begin(Players) + 10, [&](Footballer a) {
-            window.draw(a);
-        });
+        for (auto b : Players) {
+            window.draw(b);
+        }
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
         window.display();
     }
+
     window.close();
     return 0;
 }
