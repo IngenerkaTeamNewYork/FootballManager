@@ -23,8 +23,8 @@ int main() {
                 window.close();
             }
             if (event.type == sf::Event::MouseMoved and event.MouseEntered) {
-                current->mouseMove({event.mouseMove.x - current->radius,
-                                    event.mouseMove.y - current->radius}
+                current->mouseMove({static_cast<float>(event.mouseMove.x - current->radius),
+                                    static_cast<float>(event.mouseMove.y - current->radius)}
                 );
             }
             if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered) {
