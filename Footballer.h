@@ -11,9 +11,8 @@
 class Footballer : public sf::Drawable {
 private:
     sf::CircleShape footballer;
-    int radius;
 public:
-    bool following = true;
+    int radius = 0;
 
     Footballer(const sf::Vector2f pos, int radius, sf::Color fillColor, sf::Color outlineColor = sf::Color::White) {
         this->radius = radius;
@@ -25,16 +24,8 @@ public:
         this->footballer.setRadius(this->radius);
     }
 
-    int getRadius() {
-        return this->radius;
-    }
-
-    void mouseMove(int x, int y) {
-        this->footballer.setPosition(x, y);
-    }
-
-    void mouseClick() {
-        this->following = false;
+    void mouseMove(sf::Vector2f pos) {
+        this->footballer.setPosition(pos.x, pos.y);
     }
 
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const {
