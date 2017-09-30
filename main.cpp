@@ -1,7 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <exception>
-#include "Footballer.h"
+#include "src/Footballer.h"
 #include "OurTeam.h"
 
 int main() {
