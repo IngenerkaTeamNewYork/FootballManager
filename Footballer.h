@@ -13,6 +13,7 @@ private:
     sf::CircleShape footballer;
 public:
     int radius = 0;
+    const sf::Vector2i pole;
 
     Footballer(const sf::Vector2f pos, int radius, sf::Color fillColor, sf::Color outlineColor = sf::Color::White) {
         this->radius = radius;
@@ -24,7 +25,7 @@ public:
         this->footballer.setRadius(this->radius);
     }
 
-    void mouseMove(sf::Vector2f pos) {
+    void move(sf::Vector2f pos) {
         this->footballer.setPosition(pos.x, pos.y);
     }
 

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <exception>
 #include "Footballer.h"
 #include "OurTeam.h"
 
@@ -9,6 +10,11 @@ int main() {
     window.setFramerateLimit(60);
 
     int currentPlayer = 0; // max = 20
+    sf::Texture footballpole;
+    sf::Image footballpoleI;
+    footballpoleI.loadFromFile("../field.png");
+    footballpole.loadFromImage(footballpoleI);
+    sf::Sprite fbp(footballpole);
 
     // Главный цикл приложения
     auto current = PlayersRed.begin();
@@ -16,21 +22,33 @@ int main() {
         // Обрабатываем события в цикле
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (currentPlayer == 20) { window.close(); }
+            if (currentPlayer == 20) {
+                //current->
+                window.close();
+            }
             // Кроме обычного способа наше окно будет закрываться по нажатию на Escape
             if (event.type == sf::Event::Closed or
                 (event.type == sf::Event::KeyPressed and event.key.code == sf::Keyboard::Escape)) {
                 window.close();
             }
             if (event.type == sf::Event::MouseMoved and event.MouseEntered) {
-                current->mouseMove({static_cast<float>(event.mouseMove.x - current->radius),
-                                    static_cast<float>(event.mouseMove.y - current->radius)}
-                );
+                if (currentPlayer >= 10 and event.mouseMove.x >= 400) {
+                    current->move({static_cast<float>(event.mouseMove.x - current->radius),
+                                   static_cast<float>(event.mouseMove.y - current->radius)}
+                    );
+                }
+                if (currentPlayer < 10 and event.mouseMove.x <= 400) {
+                    current->move({static_cast<float>(event.mouseMove.x - current->radius),
+                                   static_cast<float>(event.mouseMove.y - current->radius)}
+                    );
+                }
             }
             if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered) {
                 //current->mouseClick(); // Be warned! Something may-be wrong here!
-                currentPlayer++;
-                current++;
+                if (currentPlayer <= 20) {
+                    currentPlayer++;
+                    current++;
+                }
             }
             if (currentPlayer == 10) {
                 current = PlayersBlue.begin();
@@ -38,6 +56,7 @@ int main() {
         }
         // Очистка
         window.clear();
+        window.draw(fbp);
         for (auto b : PlayersRed) {
             window.draw(b);
         }
