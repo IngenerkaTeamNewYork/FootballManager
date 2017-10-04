@@ -35,8 +35,7 @@ int main() {
                     current->move({static_cast<float>(event.mouseMove.x - current->radius),
                                    static_cast<float>(event.mouseMove.y - current->radius)}
                     );
-                }
-                if (currentPlayer < 10 and event.mouseMove.x <= 400) {
+                } else if (currentPlayer < 10 and event.mouseMove.x <= 400) {
                     current->move({static_cast<float>(event.mouseMove.x - current->radius),
                                    static_cast<float>(event.mouseMove.y - current->radius)}
                     );
@@ -56,6 +55,9 @@ int main() {
         // Очистка
         window.clear();
         window.draw(fbp);
+        if (PlayersRed[0].isInRange(PlayersRed[9])) {
+            window.close();
+        }
         for (auto b : PlayersRed) {
             window.draw(b);
         }

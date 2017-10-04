@@ -13,9 +13,10 @@ private:
     sf::CircleShape footballer;
 public:
     int radius = 0;
-    sf::Vector2f pos;
+    sf::Vector2f pos = {0, 0};
 
-    Footballer(const sf::Vector2f pos, int radius, sf::Color fillColor, sf::Color outlineColor = sf::Color::White) {
+    Footballer(const sf::Texture *player = nullptr, const sf::Vector2f &pos, const int &radius, const sf::Color &fillColor,
+               const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
         this->pos = pos;
 
@@ -24,14 +25,26 @@ public:
         this->footballer.setOutlineThickness(5);
         this->footballer.setPosition(pos);
         this->footballer.setRadius(this->radius);
+        if (player != nullptr) {
+            this->footballer.setTexture(player);
+        }
     }
 
-    void move(sf::Vector2f pos) {
+    void move(const sf::Vector2f &pos) {
         this->pos = this->footballer.getPosition();
         this->footballer.setPosition(pos.x, pos.y);
     }
 
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const {
+    bool isInRange(const sf::Vector2f &pos) {
+        return this->pos.x >= pos.x and this->pos.x <= pos.x + this->radius * 2 and this->pos.y >= pos.y and
+               this->pos.y <= pos.y + this->radius * 2;
+    }
+
+    bool isInRange(const Footballer &player) {
+        return isInRange(player.pos);
+    }
+
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override {
         target.draw(this->footballer, states);
     }
 };

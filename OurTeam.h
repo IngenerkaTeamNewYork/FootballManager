@@ -6,20 +6,20 @@
 
 std::vector<Footballer> PlayersRed = {
         Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red),
-        Footballer({5, 5}, 20, sf::Color::Red)
+        Footballer({50, 50}, 20, sf::Color::Red),
+        Footballer({56, 56}, 20, sf::Color::Red),
+        Footballer({56, 56}, 20, sf::Color::Red),
+        Footballer({56, 56}, 20, sf::Color::Red),
+        Footballer({56, 56}, 20, sf::Color::Red),
+        Footballer({56, 56}, 20, sf::Color::Red),
+        Footballer({56, 56}, 20, sf::Color::Red),
+        Footballer({56, 56}, 20, sf::Color::Red),
+        Footballer({56, 56}, 20, sf::Color::Red)
 };
 
 std::vector<Footballer> PlayersBlue = {
         Footballer({5, 5}, 20, sf::Color::Blue),
-        Footballer({5, 5}, 20, sf::Color::Blue),
+        Footballer({50, 50}, 20, sf::Color::Blue),
         Footballer({5, 5}, 20, sf::Color::Blue),
         Footballer({5, 5}, 20, sf::Color::Blue),
         Footballer({5, 5}, 20, sf::Color::Blue),
