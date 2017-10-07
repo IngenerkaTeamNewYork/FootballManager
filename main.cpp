@@ -17,20 +17,21 @@ int main() {
 
     // Главный цикл приложения
     auto current = PlayersRed.begin();
+    bool nope = false;
     while (window.isOpen()) {
         // Обрабатываем события в цикле
-        sf::Event event;
+        sf::Event event = sf::Event();
         while (window.pollEvent(event)) {
             if (currentPlayer == 20) {
                 //current->
-                window.close();
+                nope = true;
             }
             // Кроме обычного способа наше окно будет закрываться по нажатию на Escape
             if (event.type == sf::Event::Closed or
-                (event.type == sf::Event::KeyPressed and event.key.code == sf::Keyboard::Escape)) {
+                (event.type == sf::Event::KeyPressed and event.key.code == sf::Keyboard::Escape) and !nope) {
                 window.close();
             }
-            if (event.type == sf::Event::MouseMoved and event.MouseEntered) {
+            if (event.type == sf::Event::MouseMoved and event.MouseEntered and !nope) {
                 if (currentPlayer >= 10 and event.mouseMove.x >= 400) {
                     current->move({static_cast<float>(event.mouseMove.x - current->radius),
                                    static_cast<float>(event.mouseMove.y - current->radius)}
@@ -41,11 +42,19 @@ int main() {
                     );
                 }
             }
-            if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered) {
+            if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
+                    event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
                 //current->mouseClick(); // Be warned! Something may-be wrong here!
-                if (currentPlayer <= 20) {
+                if (currentPlayer <= 20 and currentPlayer >= 0) {
                     currentPlayer++;
                     current++;
+                }
+            } else if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
+                       event.mouseButton.button == sf::Mouse::Button::Right and !nope) {
+                //current->mouseClick(); // Be warned! Something may-be wrong here!
+                if (currentPlayer <= 20 and currentPlayer >= 0) {
+                    currentPlayer--;
+                    current--;
                 }
             }
             if (currentPlayer == 10) {
@@ -55,9 +64,6 @@ int main() {
         // Очистка
         window.clear();
         window.draw(fbp);
-        if (PlayersRed[0].isInRange(PlayersRed[9])) {
-            window.close();
-        }
         for (auto b : PlayersRed) {
             window.draw(b);
         }

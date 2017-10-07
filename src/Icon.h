@@ -9,25 +9,34 @@
 #include <SFML/Graphics.hpp>
 
 class fileError : public std::exception {
-    virtual const char* what() const throw() {
+    const char* what() const throw() override {
         return "Bad filename!";
     }
 };
 
 class Icon {
 private:
-    sf::Sprite icon;
+    sf::Texture texture;
+    sf::Sprite spr;
 public:
-    Icon(const std::string &fileName) {
+    Icon() = default;
+
+    explicit Icon(const std::string &fileName) {
         sf::Texture texture;
-        if (!texture.loadFromFile("cute_image.jpg")) {
+        if (!texture.loadFromFile(fileName)) {
             throw fileError();
         }
-        sf::Sprite sprite(texture);
-        this->icon = sprite;
+        this->texture = texture;
+        this->spr.setTexture(this->texture);
     }
-    const sf::Sprite getIcon() {
-        return this->icon;
+    const sf::Sprite &getSprite() {
+        return this->spr;
+    }
+    const sf::Texture &getTexture() {
+        return this->texture;
+    }
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) {
+        target.draw(this->spr, states);
     }
 };
 
