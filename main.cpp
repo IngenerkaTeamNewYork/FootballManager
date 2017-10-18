@@ -13,6 +13,7 @@ int main() {
     sf::Image footballpoleI;
     footballpoleI.loadFromFile("../field.png");
     footballpole.loadFromImage(footballpoleI);
+
     sf::Sprite fbp(footballpole);
 
     // Главный цикл приложения
