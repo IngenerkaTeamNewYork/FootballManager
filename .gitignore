@@ -1,12 +1,12 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### CMake template
-CMakeCache.txt
+CMakeCache.texture
 CMakeFiles
 CMakeScripts
 Testing
 Makefile
 cmake_install.cmake
-install_manifest.txt
+install_manifest.texture
 compile_commands.json
 CTestTestfile.cmake
 ### C++ template
