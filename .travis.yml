@@ -1,11 +1,8 @@
-sudo: required
-
 addons:
   apt:
     packages:
       - cmake
       - libsfml-dev
-      - gcc
 
 # Enable C++ support
 language: cpp
@@ -17,4 +14,3 @@ compiler:
 # Build steps
 script:
   - cmake ${TRAVIS_BUILD_DIR} && make
-  - ./testfb
