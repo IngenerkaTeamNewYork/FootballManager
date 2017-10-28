@@ -15,3 +15,4 @@ compiler:
 # Build steps
 script:
   - cmake ${TRAVIS_BUILD_DIR} && make
+  - ./testfb
