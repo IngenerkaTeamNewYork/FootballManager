@@ -4,10 +4,11 @@ project(FootballManager)
 set(CMAKE_CXX_STANDARD 11)
 link_libraries(sfml-graphics sfml-window sfml-system)
 
+add_executable(testfb src/tests/test.cpp)
+
 set(SOURCE_FILES
         src/Footballer.h
         main.cpp
-        OurTeam.h
-        )
+        OurTeam.h)
 
 add_executable(FootballManager ${SOURCE_FILES})

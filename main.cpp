@@ -34,12 +34,12 @@ int main() {
             }
             if (event.type == sf::Event::MouseMoved and event.MouseEntered and !nope) {
                 if (currentPlayer >= 10 and event.mouseMove.x >= 400) {
-                    current->move({static_cast<float>(event.mouseMove.x - current->radius),
-                                   static_cast<float>(event.mouseMove.y - current->radius)}
+                    current->move({static_cast<float>(event.mouseMove.x),
+                                   static_cast<float>(event.mouseMove.y)}
                     );
                 } else if (currentPlayer < 10 and event.mouseMove.x <= 400) {
-                    current->move({static_cast<float>(event.mouseMove.x - current->radius),
-                                   static_cast<float>(event.mouseMove.y - current->radius)}
+                    current->move({static_cast<float>(event.mouseMove.x),
+                                   static_cast<float>(event.mouseMove.y)}
                     );
                 }
             }
