@@ -3,6 +3,19 @@
 #include "src/Footballer.h"
 #include "OurTeam.h"
 
+void bounce(const sf::Vector2u &posLim, const std::vector<Footballer> &a, const std::vector<Footballer> &b) {
+    for (auto ccc : a, b) {
+        ccc.pos.x += ccc.posv.x;
+        ccc.pos.y += ccc.posv.y;
+        if (ccc.pos.x > posLim.x or ccc.pos.x < 0) {
+            ccc.posv.x *= -1;
+        }
+        if (ccc.pos.y > posLim.y or ccc.pos.y < 0) {
+            ccc.posv.y *= -1;
+        }
+    }
+}
+
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
     window.setVerticalSyncEnabled(true);
@@ -40,7 +53,7 @@ int main() {
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
+                event.mouseButton.button == sf::Mouse::Button::Left/* and !nope*/) {
                 //current->mouseClick(); // Be warned! Something may-be wrong here!
                 if (currentPlayer <= 20 and currentPlayer >= 0) {
                     currentPlayer++;
@@ -61,33 +74,13 @@ int main() {
                 //current->
                 nope = true;
             }
+            if (nope) {
+                bounce(window.getSize(), PlayersRed, PlayersBlue);
+            }
         }
         // Очистка
         window.clear();
         window.draw(fbp);
-        if (nope) {
-            for (auto ccc : PlayersRed) {
-                ccc.pos.x += ccc.posv.x;
-                ccc.pos.y += ccc.posv.y;
-                /*ccc.pos.x = ccc.pos.x + ccc.posv.x;
-                ccc.pos.y = ccc.pos.y + ccc.posv.y;*/
-
-                if (ccc.pos.x > window.getSize().x) {
-                    ccc.posv.x = -ccc.posv.x;
-                }
-                if (ccc.pos.y > window.getSize().y) {
-                    ccc.posv.y = -ccc.posv.y;
-                }
-                if (ccc.pos.x < 0) {
-                    ccc.posv.x = -ccc.posv.x;
-                }
-                if (ccc.pos.y < 0) {
-                    ccc.posv.y = -ccc.posv.y;
-                }
-                //ccc.move(ccc.pos);
-                ccc.move(ccc.pos);
-            }
-        }
         for (const auto &b : PlayersRed) {
             window.draw(b);
         }
