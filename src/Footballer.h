@@ -22,7 +22,7 @@ public:
                const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
         this->pos = pos;
-        this->posv = {122, 133};
+        this->posv = {10, 10};
 
         sf::Image heroimage; //создаем объект Image (изображение)
         heroimage.loadFromFile("../assets/" + footballerName + ".png");//загружаем в него файл
