@@ -65,10 +65,10 @@ int main() {
         // Очистка
         window.clear();
         window.draw(fbp);
-        for (auto b : PlayersRed) {
+        for (const auto &b : PlayersRed) {
             window.draw(b);
         }
-        for (auto b : PlayersBlue) {
+        for (const auto &b : PlayersBlue) {
             window.draw(b);
         }
         // Тут будут вызываться функции обновления и отрисовки объектов
