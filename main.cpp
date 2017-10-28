@@ -53,7 +53,7 @@ int main() {
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
+                    event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
                 //current->mouseClick(); // Be warned! Something may-be wrong here!
                 if (currentPlayer <= 20 and currentPlayer >= 0) {
                     currentPlayer++;

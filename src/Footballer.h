@@ -15,7 +15,6 @@ private:
 public:
     unsigned int radius = 0;
     sf::Vector2f pos;
-    sf::Vector2f posv;
 
     Footballer(const sf::Vector2f &pos, const unsigned int &radius, const std::string &footballerName,
                const sf::Color &fillColor,
@@ -42,8 +41,6 @@ public:
         this->footballer = f.footballer;
         this->texture = f.texture;
         this->footballer.setTexture(&this->texture);
-        this->footballer.setPosition(f.pos.x, f.pos.y);
-        this->posv = f.posv;
     }
 
     void move(const sf::Vector2f &pos) {
