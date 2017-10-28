@@ -13,10 +13,10 @@ private:
     sf::CircleShape footballer;
     sf::Texture texture;
 public:
-    int radius = 0;
-    sf::Vector2f pos = {0, 0};
+    unsigned int radius = 0;
+    sf::Vector2f pos;
 
-    Footballer(const sf::Vector2f &pos, const int &radius, const std::string &footballerName,
+    Footballer(const sf::Vector2f &pos, const unsigned int &radius, const std::string &footballerName,
                const sf::Color &fillColor,
                const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
@@ -43,9 +43,14 @@ public:
     }
 
     void move(const sf::Vector2f &pos) {
-        this->pos = this->footballer.getPosition();
+        //this->pos = this->footballer.getPosition();
         this->footballer.setPosition(pos.x, pos.y);
         this->pos = this->footballer.getPosition();
+    }
+
+    void setRadius(unsigned int radius) {
+        this->radius = radius;
+        this->footballer.setRadius(radius);
     }
 
     bool isInRange(const sf::Vector2f &pos) {
