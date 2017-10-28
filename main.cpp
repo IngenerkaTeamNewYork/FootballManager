@@ -32,7 +32,7 @@ int main() {
                 (event.type == sf::Event::KeyPressed and event.key.code == sf::Keyboard::Escape) and !nope) {
                 window.close();
             }
-            if (event.type == sf::Event::MouseMoved and event.MouseEntered and !nope) {
+            /*if (event.type == sf::Event::MouseMoved and event.MouseEntered and !nope) {
                 if (currentPlayer >= 10 and event.mouseMove.x >= 400) {
                     current->move({static_cast<float>(event.mouseMove.x - current->radius),
                                    static_cast<float>(event.mouseMove.y - current->radius)}
@@ -42,9 +42,9 @@ int main() {
                                    static_cast<float>(event.mouseMove.y - current->radius)}
                     );
                 }
-            }
+            }*/
             if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                    event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
+                event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
                 //current->mouseClick(); // Be warned! Something may-be wrong here!
                 if (currentPlayer <= 20 and currentPlayer >= 0) {
                     currentPlayer++;
@@ -61,7 +61,45 @@ int main() {
             if (currentPlayer == 10) {
                 current = PlayersBlue.begin();
             }
+
+
+            current->pos.x =  current->pos.x +  current->posv.x;
+            current->pos.y =  current->pos.y +  current->posv.y;
+
+            if (current->pos.x > window.getSize().x) {
+                current->posv.x = -current->posv.x;
+            }
+            if (current->pos.y > window.getSize().y) {
+                current->posv.y = -current->posv.y;
+            }
+            if (current->pos.x < 0) {
+                current->posv.x = -current->posv.x;
+            }
+            if (current->pos.y < 0) {
+                current->posv.y = -current->posv.y;
+            }
+            current->move(current->pos);
         }
+
+        for (auto ccc : PlayersRed, PlayersBlue) {
+            ccc.pos.x =  ccc.pos.x +  ccc.posv.x;
+            ccc.pos.y =  ccc.pos.y +  ccc.posv.y;
+
+            /*if (ccc.pos.x > window.getSize().x) {
+                ccc.posv.x = -ccc.posv.x;
+            }
+            if (ccc.pos.y > window.getSize().y) {
+                ccc.posv.y = -ccc.posv.y;
+            }
+            if (ccc.pos.x < 0) {
+                ccc.posv.x = -ccc.posv.x;
+            }
+            if (ccc.pos.y < 0) {
+                ccc.posv.y = -ccc.posv.y;
+            }*/
+            ccc.move(ccc.pos);
+        }
+
         // Очистка
         window.clear();
         window.draw(fbp);
