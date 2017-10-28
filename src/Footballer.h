@@ -22,12 +22,10 @@ public:
         this->radius = radius;
         this->pos = pos;
 
-        try {
-            sf::Image heroimage; //создаем объект Image (изображение)
-            heroimage.loadFromFile("../assets/" + footballerName + ".png");//загружаем в него файл
-            texture.loadFromImage(heroimage);//передаем в него объект Image (изображения)
-        } catch (...) {
-            throw std::runtime_error("Image not found");
+        sf::Image heroimage; //создаем объект Image (изображение)
+        heroimage.loadFromFile("../assets/" + footballerName + ".png");//загружаем в него файл
+        if (!texture.loadFromImage(heroimage)) {
+            throw std::runtime_error("Image not found.");
         }
 
         this->texture.setSmooth(true);
@@ -51,8 +49,8 @@ public:
     }
 
     bool isInRange(const sf::Vector2f &pos) {
-        return ((pos.x <= this->pos.x || pos.x >= (this->radius * 2)) or
-                (pos.y >= this->pos.y || pos.y <= (this->radius * 2)));
+        return ((pos.x >= this->pos.x and pos.x <= (this->radius * 2)) and
+                (pos.y >= this->pos.y and pos.y <= (this->radius * 2)));
     }
 
     bool isInRange(const Footballer &player) {

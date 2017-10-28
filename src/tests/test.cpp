@@ -27,6 +27,13 @@ TEST_CASE("isInRange() test") {
         CHECK(obj.isInRange({6, 6}));
     }
     SUBCASE("testing if {100, 100} is NOT near {5, 5}") {
-        CHECK_FALSE(obj.isInRange({5, 100}));
+        CHECK_FALSE(obj.isInRange({100, 100}));
     }
+    SUBCASE("testing if `obj.radius` is near") {
+        CHECK(obj.isInRange({obj.radius, obj.radius}));
+    }
+}
+
+TEST_CASE("test picture detection") {
+    CHECK_THROWS(Footballer obj({5, 5}, 20, "qwertyuiop", sf::Color::Black));
 }
