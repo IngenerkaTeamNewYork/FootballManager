@@ -42,6 +42,8 @@ public:
         this->footballer = f.footballer;
         this->texture = f.texture;
         this->footballer.setTexture(&this->texture);
+        this->pos = f.pos;
+        this->posv = f.posv;
     }
 
     void move(const sf::Vector2f &pos) {
