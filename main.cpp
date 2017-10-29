@@ -53,7 +53,7 @@ int main() {
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                    event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
+                event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
                 //current->mouseClick(); // Be warned! Something may-be wrong here!
                 if (currentPlayer <= 20 and currentPlayer >= 0) {
                     currentPlayer++;
@@ -74,13 +74,14 @@ int main() {
                 //current->
                 nope = true;
             }
-            if (nope) {
-                bounce(window.getSize(), PlayersRed, PlayersBlue);
-            }
         }
         // Очистка
         window.clear();
         window.draw(fbp);
+
+        if (nope) {
+            bounce(window.getSize(), PlayersRed, PlayersBlue);
+        }
         for (const auto &b : PlayersRed) {
             window.draw(b);
         }
