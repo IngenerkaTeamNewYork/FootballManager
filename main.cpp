@@ -3,6 +3,19 @@
 #include "src/Footballer.h"
 #include "OurTeam.h"
 
+void bounce(const sf::Vector2u &posLim, const std::vector<Footballer> &a, const std::vector<Footballer> &b) {
+    for (auto ccc : a, b) {
+        ccc.pos.x += ccc.posv.x;
+        ccc.pos.y += ccc.posv.y;
+        if (ccc.pos.x > posLim.x or ccc.pos.x < 0) {
+            ccc.posv.x *= -1;
+        }
+        if (ccc.pos.y > posLim.y or ccc.pos.y < 0) {
+            ccc.posv.y *= -1;
+        }
+    }
+}
+
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
     window.setVerticalSyncEnabled(true);
@@ -23,10 +36,6 @@ int main() {
         // Обрабатываем события в цикле
         sf::Event event = sf::Event();
         while (window.pollEvent(event)) {
-            if (currentPlayer == 20) {
-                //current->
-                nope = true;
-            }
             // Кроме обычного способа наше окно будет закрываться по нажатию на Escape
             if (event.type == sf::Event::Closed or
                 (event.type == sf::Event::KeyPressed and event.key.code == sf::Keyboard::Escape) and !nope) {
@@ -60,6 +69,13 @@ int main() {
             }
             if (currentPlayer == 10) {
                 current = PlayersBlue.begin();
+            }
+            if (currentPlayer == 20) {
+                //current->
+                nope = true;
+            }
+            if (nope) {
+                bounce(window.getSize(), PlayersRed, PlayersBlue);
             }
         }
         // Очистка

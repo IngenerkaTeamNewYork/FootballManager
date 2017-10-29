@@ -15,12 +15,14 @@ private:
 public:
     unsigned int radius = 0;
     sf::Vector2f pos;
+    sf::Vector2f posv;
 
     Footballer(const sf::Vector2f &pos, const unsigned int &radius, const std::string &footballerName,
                const sf::Color &fillColor,
                const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
         this->pos = pos;
+        this->posv = {10, 10};
 
         sf::Image heroimage; //создаем объект Image (изображение)
         heroimage.loadFromFile("../assets/" + footballerName + ".png");//загружаем в него файл
