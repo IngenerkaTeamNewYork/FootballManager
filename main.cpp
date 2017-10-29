@@ -3,19 +3,6 @@
 #include "src/Footballer.h"
 #include "OurTeam.h"
 
-void bounce(const sf::Vector2u &posLim, const std::vector<Footballer> &a, const std::vector<Footballer> &b) {
-    for (auto ccc : a, b) {
-        ccc.pos.x += ccc.posv.x;
-        ccc.pos.y += ccc.posv.y;
-        if (ccc.pos.x > posLim.x or ccc.pos.x < 0) {
-            ccc.posv.x *= -1;
-        }
-        if (ccc.pos.y > posLim.y or ccc.pos.y < 0) {
-            ccc.posv.y *= -1;
-        }
-    }
-}
-
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
     window.setVerticalSyncEnabled(true);
@@ -53,7 +40,7 @@ int main() {
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                    event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
+                event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
                 //current->mouseClick(); // Be warned! Something may-be wrong here!
                 if (currentPlayer <= 20 and currentPlayer >= 0) {
                     currentPlayer++;
@@ -74,13 +61,38 @@ int main() {
                 //current->
                 nope = true;
             }
-            if (nope) {
-                bounce(window.getSize(), PlayersRed, PlayersBlue);
-            }
+
         }
         // Очистка
         window.clear();
         window.draw(fbp);
+
+        if (nope) {
+            for (auto &currentb : PlayersRed) {
+                currentb.pos.x += currentb.posv.x;
+                currentb.pos.y += currentb.posv.y;
+                currentb.move({currentb.pos.x, currentb.pos.y});
+
+                if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
+                    currentb.posv.x *= -1;
+                }
+                if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
+                    currentb.posv.y *= -1;
+                }
+            }
+            for (auto &currentb : PlayersBlue) {
+                currentb.pos.x += currentb.posv.x;
+                currentb.pos.y += currentb.posv.y;
+                currentb.move({currentb.pos.x, currentb.pos.y});
+
+                if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
+                    currentb.posv.x *= -1;
+                }
+                if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
+                    currentb.posv.y *= -1;
+                }
+            }
+        }
         for (const auto &b : PlayersRed) {
             window.draw(b);
         }
