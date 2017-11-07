@@ -1,12 +1,14 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "src/Footballer.h"
+#include "src/RoundObj.h"
 #include "OurTeam.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
     window.setVerticalSyncEnabled(true);
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(60);  // Do not remove!
+
+    RoundObj ball({400, 300}, 20, "-", sf::Color::White);
 
     int currentPlayer = 0; // max = 20
     sf::Texture footballpole;
@@ -30,12 +32,12 @@ int main() {
             }
             if (event.type == sf::Event::MouseMoved and event.MouseEntered and !nope) {
                 if (currentPlayer >= 10 and event.mouseMove.x >= 400) {
-                    current->move({static_cast<float>(event.mouseMove.x - current->radius),
-                                   static_cast<float>(event.mouseMove.y - current->radius)}
+                    current->move({(event.mouseMove.x - current->radius),
+                                   (event.mouseMove.y - current->radius)}
                     );
                 } else if (currentPlayer < 10 and event.mouseMove.x <= 400) {
-                    current->move({static_cast<float>(event.mouseMove.x - current->radius),
-                                   static_cast<float>(event.mouseMove.y - current->radius)}
+                    current->move({event.mouseMove.x - current->radius,
+                                   event.mouseMove.y - current->radius}
                     );
                 }
             }
@@ -69,8 +71,7 @@ int main() {
 
         if (nope) {
             for (auto &currentb : PlayersRed) {
-                currentb.pos.x += currentb.posv.x;
-                currentb.pos.y += currentb.posv.y;
+                currentb.pos += currentb.posv;
                 currentb.move({currentb.pos.x, currentb.pos.y});
 
                 if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
@@ -78,11 +79,13 @@ int main() {
                 }
                 if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
                     currentb.posv.y *= -1;
+                }
+                if (ball.isInRange(currentb)) {
+                    ball.move(ball.pos + currentb.posv);
                 }
             }
             for (auto &currentb : PlayersBlue) {
-                currentb.pos.x += currentb.posv.x;
-                currentb.pos.y += currentb.posv.y;
+                currentb.pos += currentb.posv;
                 currentb.move({currentb.pos.x, currentb.pos.y});
 
                 if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
@@ -91,7 +94,16 @@ int main() {
                 if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
                     currentb.posv.y *= -1;
                 }
+                if (ball.isInRange(currentb)) {
+                    ball.move(ball.pos + currentb.posv);
+                }
             }
+        }
+        if (ball.isInRange({0, window.getSize().y/2})) {
+            goalsRed++;
+        }
+        if (ball.isInRange({window.getSize().x, window.getSize().y/2})) {
+            goalsBlue++;
         }
         for (const auto &b : PlayersRed) {
             window.draw(b);
@@ -99,11 +111,13 @@ int main() {
         for (const auto &b : PlayersBlue) {
             window.draw(b);
         }
+        window.draw(ball);
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
         window.display();
     }
-
+    std::cout << goalsRed << '\n';
+    std::cout << goalsBlue << '\n';
     window.close();
     return 0;
 }

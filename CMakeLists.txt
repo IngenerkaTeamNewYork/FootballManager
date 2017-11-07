@@ -7,7 +7,7 @@ link_libraries(sfml-graphics sfml-window sfml-system)
 add_executable(testfb src/tests/test.cpp src/tests/doctest.h)
 
 set(SOURCE_FILES
-        src/Footballer.h
+        src/RoundObj.h
         main.cpp
         OurTeam.h)
 
