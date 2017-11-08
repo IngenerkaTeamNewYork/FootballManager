@@ -19,7 +19,7 @@ int main() {
     sf::Sprite fbp(footballpole);
 
     // Главный цикл приложения
-    auto current = PlayersRed.begin();
+    auto current = Real.begin();
     bool nope = false;
     while (window.isOpen()) {
         // Обрабатываем события в цикле
@@ -30,6 +30,7 @@ int main() {
                 (event.type == sf::Event::KeyPressed and event.key.code == sf::Keyboard::Escape) and !nope) {
                 window.close();
             }
+            /*
             if (event.type == sf::Event::MouseMoved and event.MouseEntered and !nope) {
                 if (currentPlayer >= 10 and event.mouseMove.x >= 400) {
                     current->move({(event.mouseMove.x - current->radius),
@@ -57,58 +58,78 @@ int main() {
                 }
             }
             if (currentPlayer == 10) {
-                current = PlayersBlue.begin();
+                current = Bayern.begin();
             }
             if (currentPlayer == 20) {
                 //current->
                 nope = true;
-            }
-
+            }*/
         }
         // Очистка
         window.clear();
         window.draw(fbp);
 
-        if (nope) {
-            for (auto &currentb : PlayersRed) {
-                currentb.pos += currentb.posv;
-                currentb.move({currentb.pos.x, currentb.pos.y});
+        for (auto &currentb : Real) {
+            currentb.pos += currentb.posv;
+            currentb.move({currentb.pos.x, currentb.pos.y});
 
-                if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
-                    currentb.posv.x *= -1;
-                }
-                if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
-                    currentb.posv.y *= -1;
-                }
-                if (ball.isInRange(currentb)) {
-                    ball.move(ball.pos + currentb.posv);
-                }
+            if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
+                currentb.posv.x *= -1;
             }
-            for (auto &currentb : PlayersBlue) {
-                currentb.pos += currentb.posv;
-                currentb.move({currentb.pos.x, currentb.pos.y});
+            if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
+                currentb.posv.y *= -1;
+            }
+            if (ball.isInRange(currentb)) {
+                ball.move(ball.pos + currentb.posv);
+            }
+        }
+        for (auto &currentb : Bayern) {
+            currentb.pos += currentb.posv;
+            currentb.move({currentb.pos.x, currentb.pos.y});
 
-                if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
-                    currentb.posv.x *= -1;
+            if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
+                currentb.posv.x *= -1;
+            }
+            if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
+                currentb.posv.y *= -1;
+            }
+            if (ball.isInRange(currentb)) {
+                ball.move(ball.pos + currentb.posv);
+            }
+            /*for (auto &opp : Real) {
+                if (currentb.isInRange(opp)) {
+                    //currentb.move(currentb.pos - opp.posv);
                 }
-                if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
-                    currentb.posv.y *= -1;
+            }*/
+            /*for (auto &opp : Bayern) {
+                if (currentb.isInRange(opp) and opp.pos != currentb.pos) {
+                    currentb.move(currentb.pos - currentb.posv);
+                    opp.move(opp.pos - opp.posv);
                 }
-                if (ball.isInRange(currentb)) {
-                    ball.move(ball.pos + currentb.posv);
+            }*/
+        }
+
+        for (auto &currentb : Bayern) {
+            for (auto &opp : Real) {
+                while (currentb.isInRange(opp)) {
+                    currentb.move(currentb.pos - currentb.posv + sf::Vector2f(rand() % 10, rand() % 10));
+                    opp.move(opp.pos - opp.posv + sf::Vector2f(rand() % 10, rand() % 10));
+                    std::cout << opp.pos.x << '\n';
+                    std::cout << currentb.pos.x << '\n';
                 }
             }
         }
-        if (ball.isInRange({0, window.getSize().y/2})) {
+
+        if (ball.isInRange({0, window.getSize().y / 2})) {
             goalsRed++;
         }
-        if (ball.isInRange({window.getSize().x, window.getSize().y/2})) {
+        if (ball.isInRange({window.getSize().x, window.getSize().y / 2})) {
             goalsBlue++;
         }
-        for (const auto &b : PlayersRed) {
+        for (const auto &b : Real) {
             window.draw(b);
         }
-        for (const auto &b : PlayersBlue) {
+        for (const auto &b : Bayern) {
             window.draw(b);
         }
         window.draw(ball);
