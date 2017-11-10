@@ -4,6 +4,8 @@
 #include "OurTeam.h"
 
 int main() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
@@ -20,50 +22,14 @@ int main() {
 
     // Главный цикл приложения
     auto current = Real.begin();
-    bool nope = false;
     while (window.isOpen()) {
         // Обрабатываем события в цикле
         sf::Event event = sf::Event();
         while (window.pollEvent(event)) {
             // Кроме обычного способа наше окно будет закрываться по нажатию на Escape
-            if (event.type == sf::Event::Closed or
-                (event.type == sf::Event::KeyPressed and event.key.code == sf::Keyboard::Escape) and !nope) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            /*
-            if (event.type == sf::Event::MouseMoved and event.MouseEntered and !nope) {
-                if (currentPlayer >= 10 and event.mouseMove.x >= 400) {
-                    current->move({(event.mouseMove.x - current->radius),
-                                   (event.mouseMove.y - current->radius)}
-                    );
-                } else if (currentPlayer < 10 and event.mouseMove.x <= 400) {
-                    current->move({event.mouseMove.x - current->radius,
-                                   event.mouseMove.y - current->radius}
-                    );
-                }
-            }
-            if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
-                //current->mouseClick(); // Be warned! Something may-be wrong here!
-                if (currentPlayer <= 20 and currentPlayer >= 0) {
-                    currentPlayer++;
-                    current++;
-                }
-            } else if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                       event.mouseButton.button == sf::Mouse::Button::Right and !nope) {
-                //current->mouseClick(); // Be warned! Something may-be wrong here!
-                if (currentPlayer <= 20 and currentPlayer >= 0) {
-                    currentPlayer--;
-                    current--;
-                }
-            }
-            if (currentPlayer == 10) {
-                current = Bayern.begin();
-            }
-            if (currentPlayer == 20) {
-                //current->
-                nope = true;
-            }*/
         }
         // Очистка
         window.clear();
@@ -71,7 +37,7 @@ int main() {
 
         for (auto &currentb : Real) {
             currentb.pos += currentb.posv;
-            currentb.move({currentb.pos.x, currentb.pos.y});
+            currentb.move(currentb.pos);
 
             if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
                 currentb.posv.x *= -1;
@@ -85,7 +51,7 @@ int main() {
         }
         for (auto &currentb : Bayern) {
             currentb.pos += currentb.posv;
-            currentb.move({currentb.pos.x, currentb.pos.y});
+            currentb.move(currentb.pos);
 
             if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
                 currentb.posv.x *= -1;
@@ -96,26 +62,28 @@ int main() {
             if (ball.isInRange(currentb)) {
                 ball.move(ball.pos + currentb.posv);
             }
-            /*for (auto &opp : Real) {
-                if (currentb.isInRange(opp)) {
-                    //currentb.move(currentb.pos - opp.posv);
-                }
-            }*/
-            /*for (auto &opp : Bayern) {
-                if (currentb.isInRange(opp) and opp.pos != currentb.pos) {
-                    currentb.move(currentb.pos - currentb.posv);
-                    opp.move(opp.pos - opp.posv);
-                }
-            }*/
         }
 
         for (auto &currentb : Bayern) {
             for (auto &opp : Real) {
-                while (currentb.isInRange(opp)) {
-                    currentb.move(currentb.pos - currentb.posv + sf::Vector2f(rand() % 10, rand() % 10));
-                    opp.move(opp.pos - opp.posv + sf::Vector2f(rand() % 10, rand() % 10));
-                    std::cout << opp.pos.x << '\n';
-                    std::cout << currentb.pos.x << '\n';
+                if (!opp.isOutOf(window.getSize()) or !currentb.isOutOf(window.getSize())) {
+                    while (currentb.isInRange(opp)) {
+                        currentb.move(currentb.pos - currentb.posv + sf::Vector2f(rand() % 10, rand() % 10));
+                        opp.move(opp.pos - opp.posv + sf::Vector2f(rand() % 10, rand() % 10));
+                    }
+                } else {
+                    opp.move({rand() % window.getSize().x, rand() % window.getSize().y});
+                }
+            }
+        }
+
+        for (auto &currentb : Bayern) {
+            for (auto &opp : Real) {
+                if (opp.isOutOf(window.getSize()) or currentb.isOutOf(window.getSize())) {
+                    opp.move({rand() % (window.getSize().x - 100),
+                              rand() % (window.getSize().y - 100)});
+                    currentb.move({rand() % (window.getSize().x - 100),
+                                   rand() % (window.getSize().y - 100)});
                 }
             }
         }

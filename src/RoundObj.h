@@ -82,6 +82,10 @@ public:
     bool pic() {
         return this->havePic;
     }
+
+    bool isOutOf(sf::Vector2u bounds) {
+        return this->pos.x <= 0 or this->pos.y <= 0 or this->pos.x >= bounds.x or this->pos.y >= bounds.y;
+    }
 };
 
 

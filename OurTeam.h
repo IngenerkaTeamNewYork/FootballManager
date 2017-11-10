@@ -25,7 +25,7 @@ unsigned int goalsBlue = 0;
 std::vector<RoundObj> Bayern = {
         RoundObj({5, 5}  , 20, "Neuer", sf::Color::Blue    ,sf::Color::Red),
         RoundObj({50, 50}, 20, "Alaba", sf::Color::Blue    ,sf::Color::Red),
-        RoundObj({5, 5}  , 20, "Boateng", sf::Color::Blue  ,sf::Color::Red)/*,
+        RoundObj({100, 25}  , 20, "Boateng", sf::Color::Blue  ,sf::Color::Red)/*,
         /*RoundObj({5, 5}  , 20, "Hummels", sf::Color::Blue  ,sf::Color::Red),
         RoundObj({5, 5}  , 20, "Kimmich", sf::Color::Blue  ,sf::Color::Red),
         RoundObj({5, 5}  , 20, "Vidal", sf::Color::Blue    ,sf::Color::Red),
