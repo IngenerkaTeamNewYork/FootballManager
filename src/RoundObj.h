@@ -51,6 +51,8 @@ public:
         this->texture = f.texture;
         this->obj.setTexture(&this->texture);
         this->pos = f.pos;
+
+
         this->posv = f.posv;
         this->havePic = f.havePic;
     }
@@ -66,13 +68,13 @@ public:
         this->obj.setRadius(radius);
     }
 
-    bool isInRange(const sf::Vector2f &pos) {
+    bool isNear(const sf::Vector2f &pos) {
         return abs(static_cast<int>(pos.x - this->pos.x)) <= 2 * this->radius and
                abs(static_cast<int>(pos.y - this->pos.y)) <= 2 * this->radius;
     }
 
-    bool isInRange(const RoundObj &player) {
-        return isInRange(player.pos);
+    bool isNear(const RoundObj &player) {
+        return isNear(player.pos);
     }
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override {

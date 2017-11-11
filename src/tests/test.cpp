@@ -27,26 +27,26 @@ TEST_CASE("radius() test") {
     }
 }
 
-TEST_CASE("isInRange() test") {
+TEST_CASE("isNear() test") {
     RoundObj obj({5, 5}, 20, "Rudy", sf::Color::Black);
     SUBCASE("testing if obj is near itself") {
-        CHECK(obj.isInRange(obj));
+        CHECK(obj.isNear(obj));
     }
     SUBCASE("testing if `obj.radius / 2` is near") {
-        CHECK(obj.isInRange({obj.radius / 2, obj.radius / 2}));
+        CHECK(obj.isNear({obj.radius / 2, obj.radius / 2}));
     }
     SUBCASE("testing if {6, 6} is near {5, 5}") {
-        CHECK(obj.isInRange({6, 6}));
+        CHECK(obj.isNear({6, 6}));
     }
     SUBCASE("testing if NOT near values near {5, 5}") {
-        CHECK_FALSE(obj.isInRange({100, 100}));
-        CHECK_FALSE(obj.isInRange({50, 50}));
-        CHECK_FALSE(obj.isInRange({5, 500}));
+        CHECK_FALSE(obj.isNear({100, 100}));
+        CHECK_FALSE(obj.isNear({50, 50}));
+        CHECK_FALSE(obj.isNear({5, 500}));
     }
     SUBCASE("testing if `obj.radius` is near") {
-        CHECK(obj.isInRange({obj.radius + obj.pos.x, obj.radius + obj.pos.y}));
-        CHECK(obj.isInRange({obj.radius*2 + obj.pos.x, obj.radius*2 + obj.pos.y}));
-        CHECK_FALSE(obj.isInRange({obj.radius*2+1 + obj.pos.x, obj.radius*2+1 + obj.pos.y}));
+        CHECK(obj.isNear({obj.radius + obj.pos.x, obj.radius + obj.pos.y}));
+        CHECK(obj.isNear({obj.radius * 2 + obj.pos.x, obj.radius * 2 + obj.pos.y}));
+        CHECK_FALSE(obj.isNear({obj.radius * 2 + 1 + obj.pos.x, obj.radius * 2 + 1 + obj.pos.y}));
     }
 }
 

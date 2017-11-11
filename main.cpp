@@ -6,7 +6,7 @@
 int main() {
     srand(static_cast<unsigned int>(time(nullptr)));
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
+    sf::RenderWindow window(sf::VideoMode(840, 720), "Window");
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
 
@@ -19,6 +19,7 @@ int main() {
     footballpole.loadFromImage(footballpoleI);
 
     sf::Sprite fbp(footballpole);
+    fbp.setPosition(0, 0);
 
     // Главный цикл приложения
     auto current = Real.begin();
@@ -37,47 +38,71 @@ int main() {
 
         for (auto &currentb : Real) {
             currentb.pos += currentb.posv;
-            currentb.move(currentb.pos);
+            bool b = false;
 
-            if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
+            if (currentb.pos.x > window.getSize().x - 2*currentb.radius or currentb.pos.x < 0) {
                 currentb.posv.x *= -1;
+                b = true;
             }
-            if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
+            if (currentb.pos.y > 600 - 2*currentb.radius or currentb.pos.y < 0) {
                 currentb.posv.y *= -1;
+                b = true;
             }
-            if (ball.isInRange(currentb)) {
+            if (b) {
+                currentb.pos += currentb.posv;
+            }
+
+            if (ball.isNear(currentb)) {
                 ball.move(ball.pos + currentb.posv);
             }
+            currentb.move(currentb.pos);
         }
         for (auto &currentb : Bayern) {
             currentb.pos += currentb.posv;
-            currentb.move(currentb.pos);
 
-            if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
+            bool b = false;
+
+            if (currentb.pos.x > window.getSize().x - 2*currentb.radius or currentb.pos.x < 0) {
                 currentb.posv.x *= -1;
+                b = true;
             }
-            if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
+            if (currentb.pos.y > 600 - 2*currentb.radius or currentb.pos.y < 0) {
                 currentb.posv.y *= -1;
+                b = true;
             }
-            if (ball.isInRange(currentb)) {
+            if (b) {
+                currentb.pos += currentb.posv;
+            }
+            if (ball.isNear(currentb)) {
                 ball.move(ball.pos + currentb.posv);
             }
+            currentb.move(currentb.pos);
         }
 
-        for (auto &currentb : Bayern) {
+        /*for (auto &currentb : Bayern) {
             for (auto &opp : Real) {
-                if (!opp.isOutOf(window.getSize()) or !currentb.isOutOf(window.getSize())) {
-                    while (currentb.isInRange(opp)) {
-                        currentb.move(currentb.pos - currentb.posv + sf::Vector2f(rand() % 10, rand() % 10));
-                        opp.move(opp.pos - opp.posv + sf::Vector2f(rand() % 10, rand() % 10));
+                sf::Vector2f oldPos = currentb.pos;
+                sf::Vector2f oldPos2 = opp.pos;
+                unsigned int shagi = 0;
+                if (!opp.isOutOf({window.getSize().x, 400}) or !currentb.isOutOf({window.getSize().x, 400})) {
+                    while (currentb.isNear(opp) && shagi < 100) {
+                        currentb.move(oldPos - sf::Vector2f(rand() % 11 - 5, rand() % 11 - 5));
+                        opp.move(oldPos2 - sf::Vector2f(rand() % 20 - 10, rand() % 20 - 10));
+                        shagi++;
+                    }
+
+
+
+                    if (shagi == 100) {
+                        opp.move({rand() % window.getSize().x, rand() % 400});
                     }
                 } else {
-                    opp.move({rand() % window.getSize().x, rand() % window.getSize().y});
+                    opp.move({rand() % window.getSize().x, rand() % 400});
                 }
             }
-        }
+        }*/
 
-        for (auto &currentb : Bayern) {
+        /*for (auto &currentb : Bayern) {
             for (auto &opp : Real) {
                 if (opp.isOutOf(window.getSize()) or currentb.isOutOf(window.getSize())) {
                     opp.move({rand() % (window.getSize().x - 100),
@@ -86,12 +111,12 @@ int main() {
                                    rand() % (window.getSize().y - 100)});
                 }
             }
-        }
+        }*/
 
-        if (ball.isInRange({0, window.getSize().y / 2})) {
+        if (ball.isNear({0, 400 / 2})) {
             goalsRed++;
         }
-        if (ball.isInRange({window.getSize().x, window.getSize().y / 2})) {
+        if (ball.isNear({window.getSize().x, 400 / 2})) {
             goalsBlue++;
         }
         for (const auto &b : Real) {
