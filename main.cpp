@@ -3,16 +3,12 @@
 #include "src/RoundObj.h"
 #include "OurTeam.h"
 #include <fstream>
-#include <boost/regex.hpp>
 
 int main() {
     std::fstream aa("../schema.txt");
-    boost::regex schemaReg("^SCHEME(\\d+)$");
     std::string fileContents;
     aa >> fileContents;
-    if (!boost::regex_match(fileContents, schemaReg)) {
-        exit(2);
-    }
+
     std::vector<sf::Vector2f> schema(11);
     try {
         schema = *mapScheme.at(fileContents);
