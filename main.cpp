@@ -2,13 +2,55 @@
 #include <SFML/Graphics.hpp>
 #include "src/RoundObj.h"
 #include "OurTeam.h"
+#include <fstream>
+#include <boost/regex.hpp>
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Window");
+    std::fstream aa("../schema.txt");
+    boost::regex schemaReg("^SCHEME(\\d+)$");
+    std::string fileContents;
+    aa >> fileContents;
+    if (!boost::regex_match(fileContents, schemaReg)) {
+        exit(2);
+    }
+    std::vector<sf::Vector2f> schema(11);
+    try {
+        schema = *mapScheme.at(fileContents);
+    } catch (const std::out_of_range &exp) {
+        std::cout << exp.what() << '\n';
+        std::exit(EXIT_FAILURE);
+    }
+
+    unsigned int a = 0;
+    for (RoundObj &tmp2 : Real) {
+        try {
+            tmp2.move(schema.at(a));
+        } catch (const std::out_of_range &exp) {
+            std::cout << exp.what() << '\n';
+            std::exit(EXIT_FAILURE);
+        }
+        a++;
+    }
+
+    a = 0;
+    for (RoundObj &tmp2 : Bayern) {
+        try {
+            tmp2.move({schema.at(a).x + 500, schema.at(a).y});
+        } catch (std::out_of_range &exp) {
+            std::cout << exp.what();
+            std::exit(EXIT_FAILURE);
+        }
+        a++;
+    }
+
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    sf::RenderWindow window(sf::VideoMode(840, 720), "Window");
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
 
-    RoundObj ball({400, 300}, 20, "-", sf::Color::White);
+    RoundObj ball(20, "-", sf::Color::White);
+    ball.move({400, 300});
 
     int currentPlayer = 0; // max = 20
     sf::Texture footballpole;
@@ -20,50 +62,14 @@ int main() {
 
     // Главный цикл приложения
     auto current = Real.begin();
-    bool nope = false;
     while (window.isOpen()) {
         // Обрабатываем события в цикле
         sf::Event event = sf::Event();
         while (window.pollEvent(event)) {
             // Кроме обычного способа наше окно будет закрываться по нажатию на Escape
-            if (event.type == sf::Event::Closed or
-                (event.type == sf::Event::KeyPressed and event.key.code == sf::Keyboard::Escape) and !nope) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            /*
-            if (event.type == sf::Event::MouseMoved and event.MouseEntered and !nope) {
-                if (currentPlayer >= 10 and event.mouseMove.x >= 400) {
-                    current->move({(event.mouseMove.x - current->radius),
-                                   (event.mouseMove.y - current->radius)}
-                    );
-                } else if (currentPlayer < 10 and event.mouseMove.x <= 400) {
-                    current->move({event.mouseMove.x - current->radius,
-                                   event.mouseMove.y - current->radius}
-                    );
-                }
-            }
-            if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                event.mouseButton.button == sf::Mouse::Button::Left and !nope) {
-                //current->mouseClick(); // Be warned! Something may-be wrong here!
-                if (currentPlayer <= 20 and currentPlayer >= 0) {
-                    currentPlayer++;
-                    current++;
-                }
-            } else if (event.type == sf::Event::MouseButtonPressed and event.MouseEntered and
-                       event.mouseButton.button == sf::Mouse::Button::Right and !nope) {
-                //current->mouseClick(); // Be warned! Something may-be wrong here!
-                if (currentPlayer <= 20 and currentPlayer >= 0) {
-                    currentPlayer--;
-                    current--;
-                }
-            }
-            if (currentPlayer == 10) {
-                current = Bayern.begin();
-            }
-            if (currentPlayer == 20) {
-                //current->
-                nope = true;
-            }*/
         }
         // Очистка
         window.clear();
@@ -71,60 +77,82 @@ int main() {
 
         for (auto &currentb : Real) {
             currentb.pos += currentb.posv;
-            currentb.move({currentb.pos.x, currentb.pos.y});
+            bool b = false;
 
-            if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
+            if (currentb.pos.x > window.getSize().x - 2 * currentb.radius or currentb.pos.x < 0) {
                 currentb.posv.x *= -1;
+                b = true;
             }
-            if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
+            if (currentb.pos.y > 600 - 2 * currentb.radius or currentb.pos.y < 0) {
                 currentb.posv.y *= -1;
+                b = true;
             }
-            if (ball.isInRange(currentb)) {
+            if (b) {
+                currentb.pos += currentb.posv;
+            }
+
+            if (ball.isNear(currentb)) {
                 ball.move(ball.pos + currentb.posv);
             }
+            currentb.move(currentb.pos);
         }
         for (auto &currentb : Bayern) {
             currentb.pos += currentb.posv;
-            currentb.move({currentb.pos.x, currentb.pos.y});
 
-            if (currentb.pos.x > window.getSize().x or currentb.pos.x < 0) {
+            bool b = false;
+
+            if (currentb.pos.x > window.getSize().x - 2 * currentb.radius or currentb.pos.x < 0) {
                 currentb.posv.x *= -1;
+                b = true;
             }
-            if (currentb.pos.y > window.getSize().y or currentb.pos.y < 0) {
+            if (currentb.pos.y > 600 - 2 * currentb.radius or currentb.pos.y < 0) {
                 currentb.posv.y *= -1;
+                b = true;
             }
-            if (ball.isInRange(currentb)) {
+            if (b) {
+                currentb.pos += currentb.posv;
+            }
+            if (ball.isNear(currentb)) {
                 ball.move(ball.pos + currentb.posv);
             }
-            /*for (auto &opp : Real) {
-                if (currentb.isInRange(opp)) {
-                    //currentb.move(currentb.pos - opp.posv);
-                }
-            }*/
-            /*for (auto &opp : Bayern) {
-                if (currentb.isInRange(opp) and opp.pos != currentb.pos) {
-                    currentb.move(currentb.pos - currentb.posv);
-                    opp.move(opp.pos - opp.posv);
-                }
-            }*/
+            currentb.move(currentb.pos);
         }
 
-        for (auto &currentb : Bayern) {
+        /*for (auto &currentb : Bayern) {
             for (auto &opp : Real) {
-                while (currentb.isInRange(opp)) {
-                    currentb.move(currentb.pos - currentb.posv + sf::Vector2f(rand() % 10, rand() % 10));
-                    opp.move(opp.pos - opp.posv + sf::Vector2f(rand() % 10, rand() % 10));
-                    std::cout << opp.pos.x << '\n';
-                    std::cout << currentb.pos.x << '\n';
+                sf::Vector2f oldPos = currentb.pos;
+                sf::Vector2f oldPos2 = opp.pos;
+                unsigned int shagi = 0;
+                if (!opp.isOutOf({window.getSize().x, 400}) or !currentb.isOutOf({window.getSize().x, 400})) {
+                    while (currentb.isNear(opp) && shagi < 100) {
+                        currentb.move(oldPos - sf::Vector2f(rand() % 11 - 5, rand() % 11 - 5));
+                        opp.move(oldPos2 - sf::Vector2f(rand() % 20 - 10, rand() % 20 - 10));
+                        shagi++;
+                    }
+
+
+
+                    if (shagi == 100) {
+                        opp.move({rand() % window.getSize().x, rand() % 400});
+                    }
+                } else {
+                    opp.move({rand() % window.getSize().x, rand() % 400});
                 }
             }
+        }*/
+
+        if (ball.isOutOf({800, 600})) {
+            ball.move({rand() % 200, rand() % 200});
         }
 
-        if (ball.isInRange({0, window.getSize().y / 2})) {
+
+        if (ball.isNear({0, 400 / 2})) {
             goalsRed++;
+            ball.move({rand() % 700, rand() % 500});
         }
-        if (ball.isInRange({window.getSize().x, window.getSize().y / 2})) {
+        if (ball.isNear({window.getSize().x, 400 / 2})) {
             goalsBlue++;
+            ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
         }
         for (const auto &b : Real) {
             window.draw(b);
@@ -137,8 +165,12 @@ int main() {
         // Отрисовка
         window.display();
     }
+
     std::cout << goalsRed << '\n';
     std::cout << goalsBlue << '\n';
-    window.close();
+    window.
+
+            close();
+
     return 0;
 }

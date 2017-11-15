@@ -18,7 +18,7 @@ public:
     sf::Vector2f pos;
     sf::Vector2f posv;
 
-    RoundObj(const sf::Vector2f &pos, const unsigned int &radius, const std::string &footballerName,
+    RoundObj(const unsigned int &radius, const std::string &footballerName,
                const sf::Color &fillColor,
                const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
@@ -41,7 +41,7 @@ public:
         this->texture.setSmooth(true);
         this->obj.setOutlineColor(outlineColor);
         this->obj.setOutlineThickness(5);
-        this->obj.setPosition(pos);
+        this->obj.setPosition({0, 0});
         this->obj.setRadius(this->radius);
     }
 
@@ -51,6 +51,8 @@ public:
         this->texture = f.texture;
         this->obj.setTexture(&this->texture);
         this->pos = f.pos;
+
+
         this->posv = f.posv;
         this->havePic = f.havePic;
     }
@@ -66,13 +68,13 @@ public:
         this->obj.setRadius(radius);
     }
 
-    bool isInRange(const sf::Vector2f &pos) {
+    bool isNear(const sf::Vector2f &pos) {
         return abs(static_cast<int>(pos.x - this->pos.x)) <= 2 * this->radius and
                abs(static_cast<int>(pos.y - this->pos.y)) <= 2 * this->radius;
     }
 
-    bool isInRange(const RoundObj &player) {
-        return isInRange(player.pos);
+    bool isNear(const RoundObj &player) {
+        return isNear(player.pos);
     }
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override {
@@ -81,6 +83,10 @@ public:
 
     bool pic() {
         return this->havePic;
+    }
+
+    bool isOutOf(sf::Vector2u bounds) {
+        return this->pos.x <= 0 or this->pos.y <= 0 or this->pos.x >= bounds.x or this->pos.y >= bounds.y;
     }
 };
 
