@@ -56,8 +56,68 @@ std::vector<sf::Vector2f> SCHEME451 = {
         {365 * shirina_polya / 800 , 300 * vysota_polya / 600}
 };
 
+std::vector<std::string> REAL_SQUAD = {
+        "Navas",
+        "Marcelo",
+        "Varane",
+        "Ramos",
+        "Carvajal",
+        "Modric",
+        "Casemiro",
+        "Kroos",
+        "Ronaldo",
+        "Benzema",
+        "Bale"
+};
+std::vector<std::string> BAYERN_SQUAD = {
+        "Neuer",
+        "Alaba",
+        "Hummels",
+        "Boateng",
+        "Kimmich",
+        "Vidal",
+        "Thiago",
+        "Ribery",
+        "Muller",
+        "Robben",
+        "Lewa"
+};
+std::vector<std::string> ARSENAL_SQUAD = {
+        "Cech",
+        "Kolasinac",
+        "Monreal",
+        "Mustafi",
+        "Koscielny",
+        "Bellerin",
+        "Xhaka",
+        "Ramsey",
+        "Alexis",
+        "Lacazette",
+        "Ozil"
+};
+std::vector<std::string> CHELSEA_SQUAD = {
+        "Cortuois",
+        "Alonso",
+        "Azpilicueta",
+        "Luiz",
+        "Cahill",
+        "Moses",
+        "Fabregas",
+        "Kante",
+        "Hazard",
+        "Morata",
+        "Pedro"
+};
+
 std::map<std::string, std::vector<sf::Vector2f> *> mapScheme = {
         {"SCHEME433", &SCHEME433},
         {"SCHEME532", &SCHEME532},
         {"SCHEME451", &SCHEME451}
+};
+
+std::map<std::string, std::vector<std::string> *> mapSquad = {
+        {"REAL", &REAL_SQUAD},
+        {"BAYERN", &BAYERN_SQUAD},
+        {"ARSENAL", &ARSENAL_SQUAD},
+        {"CHELSEA", &CHELSEA_SQUAD}
 };
