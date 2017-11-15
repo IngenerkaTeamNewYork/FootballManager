@@ -12,50 +12,48 @@
 #include <map>
 
 //std::vector<sf::Vector2> schemaPervoiKomandy = SCHEME433;
-int vysota_polya = 600;
-int xScreen = 800;
+int vysota_polya = 550;
+int shirina_polya = 800;
 
 std::vector<sf::Vector2f> SCHEME433 = {
-        {20 / 800 * xScreen,  150 * 2},
-        {120 / 800 * xScreen, 25 * 2},
-        {100 / 800 * xScreen, 125 * 2},
-        {100 / 800 * xScreen, 200 * 2},
-        {120 / 800 * xScreen, 275 * 2},
-        {200 / 800 * xScreen, 50 * 2},
-        {200 / 800 * xScreen, 150 * 2},
-        {200 / 800 * xScreen, 250 * 2},
-        {325 / 800 * xScreen, 25 * 2},
-        {365 / 800 * xScreen, 150 * 2},
-        {325 / 800 * xScreen, 275 * 2}
+        { 20 * shirina_polya / 800 , 300 * vysota_polya / 600},
+        {120 * shirina_polya / 800 ,  50 * vysota_polya / 600},
+        {100 * shirina_polya / 800 , 250 * vysota_polya / 600},
+        {100 * shirina_polya / 800 , 400 * vysota_polya / 600},
+        {120 * shirina_polya / 800 , 550 * vysota_polya / 600},
+        {200 * shirina_polya / 800 , 100 * vysota_polya / 600},
+        {200 * shirina_polya / 800 , 300 * vysota_polya / 600},
+        {200 * shirina_polya / 800 , 500 * vysota_polya / 600},
+        {325 * shirina_polya / 800 ,  50 * vysota_polya / 600},
+        {365 * shirina_polya / 800 , 300 * vysota_polya / 600},
+        {325 * shirina_polya / 800 , 550 * vysota_polya / 600}
 };
 std::vector<sf::Vector2f> SCHEME532 = {
-
-        {10 / 800 * xScreen,  300 * 2},
-        {175 / 800 * xScreen, 50 * 2},
-        {100 / 800 * xScreen, 250 * 2},
-        {100 / 800 * xScreen, 400 * 2},
-        {100 / 800 * xScreen, 550 * 2},
-        {175 / 800 * xScreen, 300 * 2},
-        {175 / 800 * xScreen, 500 * 2},
-        {325 / 800 * xScreen, 45 * 2},
-        {325 / 800 * xScreen, 50 * 2},
-        {365 / 800 * xScreen, 300 * 2},
-        {325 / 800 * xScreen, 275 * 2}
+        { 20 * shirina_polya / 800 , 300 * vysota_polya / 600},
+        {175 * shirina_polya / 800 ,  50 * vysota_polya / 600},
+        {100 * shirina_polya / 800 , 150 * vysota_polya / 600},
+        {100 * shirina_polya / 800 , 300 * vysota_polya / 600},
+        {100 * shirina_polya / 800 , 450 * vysota_polya / 600},
+        {175 * shirina_polya / 800 , 550 * vysota_polya / 600},
+        {275 * shirina_polya / 800 , 100 * vysota_polya / 600},
+        {275 * shirina_polya / 800 , 300 * vysota_polya / 600},
+        {275 * shirina_polya / 800 , 500 * vysota_polya / 600},
+        {365 * shirina_polya / 800 , 250 * vysota_polya / 600},
+        {365 * shirina_polya / 800 , 350 * vysota_polya / 600}
 };
 
 std::vector<sf::Vector2f> SCHEME451 = {
-
-        {20 / 800 * xScreen,  150 * 2},
-        {120 / 800 * xScreen, 25 * 2},
-        {100 / 800 * xScreen, 125 * 2},
-        {100 / 800 * xScreen, 200 * 2},
-        {120 / 800 * xScreen, 275 * 2},
-        {125 / 800 * xScreen, 100 * 2},
-        {125 / 800 * xScreen, 200 * 2},
-        {275 / 800 * xScreen, 50 * 2},
-        {275 / 800 * xScreen, 300 * 2},
-        {275 / 800 * xScreen, 275 * 2},
-        {325 / 800 * xScreen, 275 * 2}
+        { 20 * shirina_polya / 800 , 300 * vysota_polya / 600},
+        {120 * shirina_polya / 800 ,  50 * vysota_polya / 600},
+        {100 * shirina_polya / 800 , 250 * vysota_polya / 600},
+        {100 * shirina_polya / 800 , 400 * vysota_polya / 600},
+        {120 * shirina_polya / 800 , 550 * vysota_polya / 600},
+        {260 * shirina_polya / 800 ,  50 * vysota_polya / 600},
+        {260 * shirina_polya / 800 , 175 * vysota_polya / 600},
+        {260 * shirina_polya / 800 , 300 * vysota_polya / 600},
+        {260 * shirina_polya / 800 , 425 * vysota_polya / 600},
+        {260 * shirina_polya / 800 , 550 * vysota_polya / 600},
+        {365 * shirina_polya / 800 , 300 * vysota_polya / 600}
 };
 
 std::map<std::string, std::vector<sf::Vector2f> *> mapScheme = {
