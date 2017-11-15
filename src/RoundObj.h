@@ -18,7 +18,7 @@ public:
     sf::Vector2f pos;
     sf::Vector2f posv;
 
-    RoundObj(const sf::Vector2f &pos, const unsigned int &radius, const std::string &footballerName,
+    RoundObj(const unsigned int &radius, const std::string &footballerName,
                const sf::Color &fillColor,
                const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
@@ -41,7 +41,7 @@ public:
         this->texture.setSmooth(true);
         this->obj.setOutlineColor(outlineColor);
         this->obj.setOutlineThickness(5);
-        this->obj.setPosition(pos);
+        this->obj.setPosition({0, 0});
         this->obj.setRadius(this->radius);
     }
 
