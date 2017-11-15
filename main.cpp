@@ -31,7 +31,7 @@ int main() {
     a = 0;
     for (RoundObj &tmp2 : Bayern) {
         try {
-            tmp2.move({840 - schema.at(a).x, schema.at(a).y});
+            tmp2.move({800 - schema.at(a).x schema.at(a).y});
         } catch (std::out_of_range &exp) {
             std::cout << exp.what();
             std::exit(EXIT_FAILURE);
@@ -43,7 +43,7 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode(840, 720), "Window");
     window.setVerticalSyncEnabled(true);
-    window.setFramerateLimit(2);  // Do not remove!
+    window.setFramerateLimit(60);  // Do not remove!
 
     RoundObj ball(20, "-", sf::Color::White);
     ball.move({400, 300});
@@ -70,7 +70,7 @@ int main() {
         // Очистка
         window.clear();
         window.draw(fbp);
-/*
+
         for (auto &currentb : Real) {
             currentb.pos += currentb.posv;
             bool b = false;
@@ -112,7 +112,7 @@ int main() {
                 ball.move(ball.pos + currentb.posv);
             }
             currentb.move(currentb.pos);
-        }*/
+        }
 
         /*for (auto &currentb : Bayern) {
             for (auto &opp : Real) {
@@ -136,7 +136,7 @@ int main() {
                 }
             }
         }*/
-/*
+
         if (ball.isOutOf({800, 600})) {
             ball.move({rand() % 200, rand() % 200});
         }
@@ -149,7 +149,7 @@ int main() {
         if (ball.isNear({window.getSize().x, 400 / 2})) {
             goalsBlue++;
             ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
-        }*/
+        }
         for (const auto &b : Real) {
             window.draw(b);
         }
@@ -164,7 +164,9 @@ int main() {
 
     std::cout << goalsRed << '\n';
     std::cout << goalsBlue << '\n';
-    window.close();
+    window.
+
+            close();
 
     return 0;
 }
