@@ -31,7 +31,7 @@ int main() {
     a = 0;
     for (RoundObj &tmp2 : Bayern) {
         try {
-            tmp2.move({schema.at(a).x + 500, schema.at(a).y});
+            tmp2.move({800 - schema.at(a).x schema.at(a).y});
         } catch (std::out_of_range &exp) {
             std::cout << exp.what();
             std::exit(EXIT_FAILURE);
