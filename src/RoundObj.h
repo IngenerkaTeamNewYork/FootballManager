@@ -18,12 +18,12 @@ public:
     sf::Vector2f pos;
     sf::Vector2f posv;
 
-    RoundObj(const unsigned int &radius, const std::string &footballerName,
+    RoundObj(const unsigned int &radius, const std::string &footballerName, const std::uint8_t skill,
                const sf::Color &fillColor,
                const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
         this->pos = pos;
-        this->posv = {10, 10};
+        this->posv = {10 + skill, 10 + skill};
 
         if (footballerName != "-") {
             sf::Image heroimage; //создаем объект Image (изображение)
