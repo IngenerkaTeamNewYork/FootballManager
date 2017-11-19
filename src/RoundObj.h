@@ -11,12 +11,12 @@
 class RoundObj : public sf::Drawable {
 private:
     sf::CircleShape obj;
-    sf::Texture texture;
     bool havePic;
 public:
     unsigned int radius = 0;
     sf::Vector2f pos;
     sf::Vector2f posv;
+    sf::Texture texture;
 
     RoundObj(const unsigned int &radius, const std::string &footballerName,
                const sf::Color &fillColor,
@@ -51,7 +51,6 @@ public:
         this->texture = f.texture;
         this->obj.setTexture(&this->texture);
         this->pos = f.pos;
-
 
         this->posv = f.posv;
         this->havePic = f.havePic;
