@@ -11,19 +11,19 @@
 class RoundObj : public sf::Drawable {
 private:
     sf::CircleShape obj;
+    sf::Texture texture;
     bool havePic;
 public:
     unsigned int radius = 0;
     sf::Vector2f pos;
     sf::Vector2f posv;
-    sf::Texture texture;
 
-    RoundObj(const unsigned int &radius, const std::string &footballerName,
+    RoundObj(const unsigned int &radius, const std::string &footballerName, const std::uint8_t skill,
                const sf::Color &fillColor,
                const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
         this->pos = pos;
-        this->posv = {10, 10};
+        this->posv = {10 + skill, 10 + skill};
 
         if (footballerName != "-") {
             sf::Image heroimage; //создаем объект Image (изображение)
@@ -51,6 +51,7 @@ public:
         this->texture = f.texture;
         this->obj.setTexture(&this->texture);
         this->pos = f.pos;
+
 
         this->posv = f.posv;
         this->havePic = f.havePic;

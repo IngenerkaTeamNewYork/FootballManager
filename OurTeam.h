@@ -9,32 +9,32 @@ const std::string mainFolder = "../assets/";
 
 unsigned int goalsRed = 0;
 std::vector<RoundObj> Real = {
-        RoundObj(20, "Navas"  , sf::Color::Black,sf::Color::White),
-        RoundObj(20, "Marcelo", sf::Color::Blue ,sf::Color::White),
-        RoundObj(20, "Varane"  , sf::Color::Blue ,sf::Color::White),
-        RoundObj(20, "Ramos"   , sf::Color::Blue ,sf::Color::White),
-        RoundObj(20, "Carvajal", sf::Color::Blue ,sf::Color::White),
-        RoundObj(20, "Modric"  , sf::Color::Green,sf::Color::White),
-        RoundObj(20, "Casemiro", sf::Color::Green,sf::Color::White),
-        RoundObj(20, "Kroos"   , sf::Color::Green,sf::Color::White),
-        RoundObj(20, "Ronaldo"  , sf::Color::Red  ,sf::Color::White),
-        RoundObj(20, "Benzema" , sf::Color::Red  ,sf::Color::White),
-        RoundObj(20, "Bale"    , sf::Color::Red  ,sf::Color::White)
+        RoundObj(20, "Navas"   , 0,sf::Color::Black,sf::Color::White),
+        RoundObj(20, "Marcelo" , 0,sf::Color::Blue ,sf::Color::White),
+        RoundObj(20, "Varane"  , 0,sf::Color::Blue ,sf::Color::White),
+        RoundObj(20, "Ramos"   , 0,sf::Color::Blue ,sf::Color::White),
+        RoundObj(20, "Carvajal", 0,sf::Color::Blue ,sf::Color::White),
+        RoundObj(20, "Modric"  , 0,sf::Color::Green,sf::Color::White),
+        RoundObj(20, "Casemiro", 0,sf::Color::Green,sf::Color::White),
+        RoundObj(20, "Kroos"   , 0,sf::Color::Green,sf::Color::White),
+        RoundObj(20, "Ronaldo" , 0,sf::Color::Red  ,sf::Color::White),
+        RoundObj(20, "Benzema" , 0,sf::Color::Red  ,sf::Color::White),
+        RoundObj(20, "Bale"    , 0,sf::Color::Red  ,sf::Color::White)
 };
 
 unsigned int goalsBlue = 0;
 std::vector<RoundObj> Bayern = {
-        RoundObj(20, "Neuer", sf::Color::Blue    ,sf::Color::Red),
-        RoundObj(20, "Alaba", sf::Color::Blue    ,sf::Color::Red),
-        RoundObj(20, "Boateng", sf::Color::Blue  ,sf::Color::Red),
-        RoundObj(20, "Hummels", sf::Color::Blue  ,sf::Color::Red),
-        RoundObj(20, "Kimmich", sf::Color::Blue  ,sf::Color::Red),
-        RoundObj(20, "Vidal", sf::Color::Blue    ,sf::Color::Red),
-        RoundObj(20, "Thiago", sf::Color::Blue   ,sf::Color::Red),
-        RoundObj(20, "Ribery", sf::Color::Blue   ,sf::Color::Red),
-        RoundObj(20, "Rodriguez", sf::Color::Blue,sf::Color::Red),
-        RoundObj(20, "Robben", sf::Color::Blue   ,sf::Color::Red),
-        RoundObj(20, "Lewa", sf::Color::Blue     ,sf::Color::Red)
+        RoundObj(20, "Neuer"    , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Alaba"    , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Boateng"  , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Hummels"  , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Kimmich"  , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Vidal"    , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Thiago"   , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Ribery"   , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Rodriguez", 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Robben"   , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Lewa"     , 0,sf::Color::Blue  ,sf::Color::Red)
 };
 
 #endif //FOOTBALLMANAGER_OURTEAM_H
