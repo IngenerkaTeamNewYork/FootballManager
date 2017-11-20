@@ -10,50 +10,49 @@
 #include <SFML/System/Vector2.hpp>
 #include <string>
 #include <map>
+#include "const.h"
 
 //std::vector<sf::Vector2> schemaPervoiKomandy = SCHEME433;
-int vysota_polya = 550;
-int shirina_polya = 800;
 
 std::vector<sf::Vector2f> SCHEME433 = {
-        { 20 * shirina_polya / 800 , 300 * vysota_polya / 600},
-        {120 * shirina_polya / 800 ,  50 * vysota_polya / 600},
-        {100 * shirina_polya / 800 , 250 * vysota_polya / 600},
-        {100 * shirina_polya / 800 , 400 * vysota_polya / 600},
-        {120 * shirina_polya / 800 , 550 * vysota_polya / 600},
-        {200 * shirina_polya / 800 , 100 * vysota_polya / 600},
-        {200 * shirina_polya / 800 , 300 * vysota_polya / 600},
-        {200 * shirina_polya / 800 , 500 * vysota_polya / 600},
-        {325 * shirina_polya / 800 ,  50 * vysota_polya / 600},
-        {365 * shirina_polya / 800 , 300 * vysota_polya / 600},
-        {325 * shirina_polya / 800 , 550 * vysota_polya / 600}
+        { 20 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
+        {120 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
+        {100 * SHIRINA_POLYA / 800 , 250 * VYSOTA_POLYA / 600},
+        {100 * SHIRINA_POLYA / 800 , 400 * VYSOTA_POLYA / 600},
+        {120 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600},
+        {200 * SHIRINA_POLYA / 800 , 100 * VYSOTA_POLYA / 600},
+        {200 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
+        {200 * SHIRINA_POLYA / 800 , 500 * VYSOTA_POLYA / 600},
+        {325 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
+        {365 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
+        {325 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600}
 };
 std::vector<sf::Vector2f> SCHEME532 = {
-        { 20 * shirina_polya / 800 , 300 * vysota_polya / 600},
-        {175 * shirina_polya / 800 ,  50 * vysota_polya / 600},
-        {100 * shirina_polya / 800 , 150 * vysota_polya / 600},
-        {100 * shirina_polya / 800 , 300 * vysota_polya / 600},
-        {100 * shirina_polya / 800 , 450 * vysota_polya / 600},
-        {175 * shirina_polya / 800 , 550 * vysota_polya / 600},
-        {275 * shirina_polya / 800 , 100 * vysota_polya / 600},
-        {275 * shirina_polya / 800 , 300 * vysota_polya / 600},
-        {275 * shirina_polya / 800 , 500 * vysota_polya / 600},
-        {365 * shirina_polya / 800 , 250 * vysota_polya / 600},
-        {365 * shirina_polya / 800 , 350 * vysota_polya / 600}
+        { 20 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
+        {175 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
+        {100 * SHIRINA_POLYA / 800 , 150 * VYSOTA_POLYA / 600},
+        {100 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
+        {100 * SHIRINA_POLYA / 800 , 450 * VYSOTA_POLYA / 600},
+        {175 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600},
+        {275 * SHIRINA_POLYA / 800 , 100 * VYSOTA_POLYA / 600},
+        {275 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
+        {275 * SHIRINA_POLYA / 800 , 500 * VYSOTA_POLYA / 600},
+        {365 * SHIRINA_POLYA / 800 , 250 * VYSOTA_POLYA / 600},
+        {365 * SHIRINA_POLYA / 800 , 350 * VYSOTA_POLYA / 600}
 };
 
 std::vector<sf::Vector2f> SCHEME451 = {
-        { 20 * shirina_polya / 800 , 300 * vysota_polya / 600},
-        {120 * shirina_polya / 800 ,  50 * vysota_polya / 600},
-        {100 * shirina_polya / 800 , 250 * vysota_polya / 600},
-        {100 * shirina_polya / 800 , 400 * vysota_polya / 600},
-        {120 * shirina_polya / 800 , 550 * vysota_polya / 600},
-        {260 * shirina_polya / 800 ,  50 * vysota_polya / 600},
-        {260 * shirina_polya / 800 , 175 * vysota_polya / 600},
-        {260 * shirina_polya / 800 , 300 * vysota_polya / 600},
-        {260 * shirina_polya / 800 , 425 * vysota_polya / 600},
-        {260 * shirina_polya / 800 , 550 * vysota_polya / 600},
-        {365 * shirina_polya / 800 , 300 * vysota_polya / 600}
+        { 20 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
+        {120 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
+        {100 * SHIRINA_POLYA / 800 , 250 * VYSOTA_POLYA / 600},
+        {100 * SHIRINA_POLYA / 800 , 400 * VYSOTA_POLYA / 600},
+        {120 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600},
+        {260 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
+        {260 * SHIRINA_POLYA / 800 , 175 * VYSOTA_POLYA / 600},
+        {260 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
+        {260 * SHIRINA_POLYA / 800 , 425 * VYSOTA_POLYA / 600},
+        {260 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600},
+        {365 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600}
 };
 
 std::vector<std::string> REAL_SQUAD = {
