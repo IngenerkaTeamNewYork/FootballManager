@@ -45,7 +45,7 @@ int main() {
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
 
-    RoundObj ball(20, "-", sf::Color::White);
+    RoundObj ball(20, "-", 0, sf::Color::White);
     ball.move({400, 300});
 
     int currentPlayer = 0; // max = 20
