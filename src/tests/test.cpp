@@ -10,7 +10,7 @@ std::uniform_int_distribution<unsigned int> rl(0, 100);
 #define rlg() rl(random_gen);
 
 TEST_CASE("move() test") {
-    RoundObj obj({5, 5}, 20, "Rudy", sf::Color::Black);
+    RoundObj obj(20, "Rudy", 0, sf::Color::Black);
     unsigned int rand_pos = rlg();
     obj.move({rand_pos + 10, rand_pos});
     CHECK(obj.pos.x == rand_pos + 10);
@@ -18,7 +18,7 @@ TEST_CASE("move() test") {
 }
 
 TEST_CASE("radius() test") {
-    RoundObj obj({5, 5}, 20, "Rudy", sf::Color::Black);
+    RoundObj obj(20, "Rudy", 0, sf::Color::Black);
     CHECK(obj.radius == 20);
     SUBCASE("setRadius() test") {
         unsigned int rand_radius = rlg();
@@ -28,7 +28,8 @@ TEST_CASE("radius() test") {
 }
 
 TEST_CASE("isNear() test") {
-    RoundObj obj({5, 5}, 20, "Rudy", sf::Color::Black);
+    RoundObj obj(20, "Rudy", 0, sf::Color::Black);
+    obj.move({5, 5});
     SUBCASE("testing if obj is near itself") {
         CHECK(obj.isNear(obj));
     }
@@ -51,7 +52,7 @@ TEST_CASE("isNear() test") {
 }
 
 TEST_CASE("test picture detection") {
-    CHECK_THROWS_MESSAGE(RoundObj obj({5, 5}, 20, "qwertyuiop", sf::Color::Black), "Failed to load image");
-    RoundObj obj({5, 5}, 20, "-", sf::Color::Black);
+    CHECK_THROWS_MESSAGE(RoundObj obj(20, "qwertyuiop", 0, sf::Color::Black), "Failed to load image");
+    RoundObj obj(20, "-", 0, sf::Color::Black);
     CHECK_FALSE(obj.pic());
 }
