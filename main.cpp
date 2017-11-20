@@ -114,29 +114,6 @@ int main() {
             currentb.move(currentb.pos);
         }
 
-        /*for (auto &currentb : Bayern) {
-            for (auto &opp : Real) {
-                sf::Vector2f oldPos = currentb.pos;
-                sf::Vector2f oldPos2 = opp.pos;
-                unsigned int shagi = 0;
-                if (!opp.isOutOf({window.getSize().x, 400}) or !currentb.isOutOf({window.getSize().x, 400})) {
-                    while (currentb.isNear(opp) && shagi < 100) {
-                        currentb.move(oldPos - sf::Vector2f(rand() % 11 - 5, rand() % 11 - 5));
-                        opp.move(oldPos2 - sf::Vector2f(rand() % 20 - 10, rand() % 20 - 10));
-                        shagi++;
-                    }
-
-
-
-                    if (shagi == 100) {
-                        opp.move({rand() % window.getSize().x, rand() % 400});
-                    }
-                } else {
-                    opp.move({rand() % window.getSize().x, rand() % 400});
-                }
-            }
-        }*/
-
         if (ball.isOutOf({800, 600})) {
             ball.move({rand() % 200, rand() % 200});
         }
@@ -164,9 +141,7 @@ int main() {
 
     std::cout << goalsRed << '\n';
     std::cout << goalsBlue << '\n';
-    window.
-
-            close();
+    window.close(); // Who does that? (6e8d0ef)
 
     return 0;
 }
