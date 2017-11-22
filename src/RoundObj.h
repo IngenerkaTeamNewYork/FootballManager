@@ -18,6 +18,12 @@ public:
     sf::Vector2f pos;
     sf::Vector2f posv;
 
+    unsigned int skill_goalkeeper = 0;
+    unsigned int skill_defender = 0;
+    unsigned int skill_midfielder = 0;
+    unsigned int skill_striker = 0;
+
+
     RoundObj(const unsigned int &radius, const std::string &footballerName, const std::uint8_t skill,
                const sf::Color &fillColor,
                const sf::Color &outlineColor = sf::Color::White) {

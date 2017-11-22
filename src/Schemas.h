@@ -9,7 +9,7 @@
 #include <vector>
 #include <SFML/System/Vector2.hpp>
 #include <string>
-#include <map>
+#include <list>
 #include "const.h"
 
 //std::vector<sf::Vector2> schemaPervoiKomandy = SCHEME433;
@@ -55,7 +55,7 @@ std::vector<sf::Vector2f> SCHEME451 = {
         {365 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600}
 };
 
-std::vector<std::string> REAL_SQUAD = {
+std::list<std::string> REAL_SQUAD = {
         "Navas",
         "Marcelo",
         "Varane",
@@ -68,7 +68,7 @@ std::vector<std::string> REAL_SQUAD = {
         "Benzema",
         "Bale"
 };
-std::vector<std::string> BAYERN_SQUAD = {
+std::list<std::string> BAYERN_SQUAD = {
         "Neuer",
         "Alaba",
         "Hummels",
@@ -81,7 +81,7 @@ std::vector<std::string> BAYERN_SQUAD = {
         "Robben",
         "Lewa"
 };
-std::vector<std::string> ARSENAL_SQUAD = {
+std::list<std::string> ARSENAL_SQUAD = {
         "Cech",
         "Kolasinac",
         "Monreal",
@@ -94,7 +94,7 @@ std::vector<std::string> ARSENAL_SQUAD = {
         "Lacazette",
         "Ozil"
 };
-std::vector<std::string> CHELSEA_SQUAD = {
+std::list<std::string> CHELSEA_SQUAD = {
         "Cortuois",
         "Alonso",
         "Azpilicueta",
@@ -119,4 +119,65 @@ std::map<std::string, std::vector<std::string> *> mapSquad = {
         {"BAYERN", &BAYERN_SQUAD},
         {"ARSENAL", &ARSENAL_SQUAD},
         {"CHELSEA", &CHELSEA_SQUAD}
+};
+
+struct skills {
+    std::string player;
+    unsigned int skill_goalkeeper = 0;
+    unsigned int skill_defender = 0;
+    unsigned int skill_midfielder = 0;
+    unsigned int skill_striker = 0;
+};
+
+std::list<skills> skillsArrayRealMadrid = {
+        {"Navas",    85, 67, 40, 30},
+        {"Marcelo",  20, 87, 75, 81},
+        {"Varane",   34, 85, 59, 56},
+        {"Ramos",    43, 86, 62, 72},
+        {"Carvajal", 47, 84, 71, 69},
+        {"Modric",   23, 72, 90, 68},
+        {"Casemiro", 44, 81, 88, 68},
+        {"Kroos",    21, 70, 87, 43},
+        {"Ronaldo",  36, 20, 76, 95},
+        {"Benzema",  15, 20, 63, 81},
+        {"Bale",     30, 66, 63, 83}
+};
+std::list<skills> skillsArrayRealMadrid = {
+        {"Navas",    85, 67, 40, 30},
+        {"Marcelo",  20, 87, 75, 81},
+        {"Varane",   34, 85, 59, 56},
+        {"Ramos",    43, 86, 62, 72},
+        {"Carvajal", 47, 84, 71, 69},
+        {"Modric",   23, 72, 90, 68},
+        {"Casemiro", 44, 81, 88, 68},
+        {"Kroos",    21, 70, 87, 43},
+        {"Ronaldo",  36, 20, 76, 95},
+        {"Benzema",  15, 20, 63, 81},
+        {"Bale",     30, 66, 63, 83}
+};
+std::list<skills> skillsArrayRealMadrid = {
+        {"Navas",    85, 67, 40, 30},
+        {"Marcelo",  20, 87, 75, 57},
+        {"Varane",   34, 85, 59, 56},
+        {"Ramos",    43, 86, 62, 72},
+        {"Carvajal", 47, 84, 71, 69},
+        {"Modric",   23, 72, 90, 68},
+        {"Casemiro", 44, 81, 88, 68},
+        {"Kroos",    21, 70, 87, 43},
+        {"Ronaldo",  36, 20, 76, 95},
+        {"Benzema",  15, 20, 63, 81},
+        {"Bale",     30, 66, 63, 83}
+};
+std::list<skills> skillsArrayChealsea = {
+        {"Courtois", 89, 67, 46, 31},
+        {"Alonso", 15, 83, 75, 57},
+        {"Azpilicueta", 36, 85, 59, 30},
+        {"Luiz", 43, 86, 62, 25},
+        {"Cahill", 61, 80, 42, 23},
+        {"Moses", 21, 79, 54, 34},
+        {"Fabregas", 12, 56, 86, 35},
+        {"Kante", 21, 76, 85, 43},
+        {"Hazard", 36, 20, 54, 92},
+        {"Morata", 15, 20, 63, 84},
+        {"Pedro", 10, 32, 45, 83}
 };
