@@ -2,8 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include "src/RoundObj.h"
 #include "OurTeam.h"
-#include "src/const.h"
 #include <fstream>
+#include <cmath>
 
 int main() {
     unsigned int a = 0;
@@ -51,7 +51,7 @@ int main() {
         std::exit(EXIT_FAILURE);
     }
     a = 0;
-    for (RoundObj &tmp2 : Real) {
+    for (RoundObj &tmp2 : Team1) {
         try {
             tmp2.move(schema1.at(a));
         } catch (const std::out_of_range &exp) {
@@ -71,7 +71,7 @@ int main() {
         std::exit(EXIT_FAILURE);
     }
     a = 0;
-    for (RoundObj &tmp2 : Bayern) {
+    for (RoundObj &tmp2 : Team2) {
         try {
             tmp2.move({800 - schema2.at(a).x, schema2.at(a).y});
         } catch (std::out_of_range &exp) {
@@ -81,13 +81,30 @@ int main() {
         a++;
     }
 
+    for (RoundObj &player : Team1) {
+        for (skills &skill : skillsArray) {
+            if (player.name == skill.player) {
+                player.setSkills(skill.skill_goalkeeper, skill.skill_defender, skill.skill_midfielder,
+                                 skill.skill_striker);
+            }
+        }
+    }
+    for (RoundObj &player : Team2) {
+        for (skills &skill : skillsArray) {
+            if (player.name == skill.player) {
+                player.setSkills(skill.skill_goalkeeper, skill.skill_defender, skill.skill_midfielder,
+                                 skill.skill_striker);
+            }
+        }
+    }
+
     srand(static_cast<unsigned int>(time(nullptr)));
 
     sf::RenderWindow window(sf::VideoMode(FBM_X_EKRANA, FBM_Y_EKRANA), "Window");
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
 
-    RoundObj ball(20, "-",0, sf::Color::White);
+    RoundObj ball(20, "-", 0, sf::Color::White);
     ball.move({400, 300});
 
     int currentPlayer = 0; // max = 20
@@ -103,8 +120,56 @@ int main() {
     sf::Text first("0", font);
     sf::Text second("0", font);
 
+    unsigned int totalskill2 = 0;
+    unsigned int totalskill1 = 0;
+
+    for (RoundObj &player : Team1) {
+        if (player.skill_goalkeeper >= player.skill_defender and
+            player.skill_goalkeeper >= player.skill_midfielder and
+            player.skill_goalkeeper >= player.skill_striker) {
+            totalskill1 += player.skill_goalkeeper;
+        } else if (player.skill_defender >= player.skill_goalkeeper and
+                   player.skill_defender >= player.skill_midfielder and
+                   player.skill_defender >= player.skill_striker) {
+            totalskill1 += player.skill_defender;
+        } else if (player.skill_midfielder >= player.skill_goalkeeper and
+                   player.skill_midfielder >= player.skill_defender and
+                   player.skill_midfielder >= player.skill_striker) {
+            totalskill1 += player.skill_midfielder;
+        } else {
+            totalskill1 += player.skill_striker;
+        }
+    }
+    for (RoundObj &player : Team2) {
+        if (player.skill_goalkeeper >= player.skill_defender and
+            player.skill_goalkeeper >= player.skill_midfielder and
+            player.skill_goalkeeper >= player.skill_striker) {
+            totalskill2 += player.skill_goalkeeper;
+        } else if (player.skill_defender >= player.skill_goalkeeper and
+                   player.skill_defender >= player.skill_midfielder and
+                   player.skill_defender >= player.skill_striker) {
+            totalskill2 += player.skill_defender;
+        } else if (player.skill_midfielder >= player.skill_goalkeeper and
+                   player.skill_midfielder >= player.skill_defender and
+                   player.skill_midfielder >= player.skill_striker) {
+            totalskill2 += player.skill_midfielder;
+        } else {
+            totalskill2 += player.skill_striker;
+        }
+    }
+
+    first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
+    second.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25});
+
+    sf::Text predictionfirst(std::to_string(int(totalskill1 / 20)), font);
+    sf::Text predictionsecond(std::to_string(int(totalskill2 / 20)), font);
+
+    predictionfirst.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 100});
+    predictionsecond.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25 + 100});
+
+
     // Главный цикл приложения
-    auto current = Real.begin();
+    auto current = Team1.begin();
     while (window.isOpen()) {
         // Обрабатываем события в цикле
         sf::Event event = sf::Event();
@@ -118,7 +183,7 @@ int main() {
         window.clear();
         window.draw(fbp);
 
-        for (auto &currentb : Real) {
+        for (auto &currentb : Team1) {
             currentb.pos += currentb.posv;
             bool b = false;
 
@@ -139,7 +204,7 @@ int main() {
             }
             currentb.move(currentb.pos);
         }
-        for (auto &currentb : Bayern) {
+        for (auto &currentb : Team2) {
             currentb.pos += currentb.posv;
 
             bool b = false;
@@ -189,34 +254,32 @@ int main() {
         }
 
 
-        if (ball.isNear({0, FBM_Y_POLYA / 2})) {
+        if (ball.isNear({5, FBM_Y_POLYA / 2})) {
             goalsRed++;
-            ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
-            second.setString(std::to_string(goalsRed));
+            ball.move({(rand() % 700) + 100, (rand() % 700) + 100});
+            first.setString(std::to_string(goalsRed));
         }
-        if (ball.isNear({FBM_X_POLYA, FBM_Y_POLYA / 2})) {
+        if (ball.isNear({FBM_X_POLYA - 5, FBM_Y_POLYA / 2})) {
             goalsBlue++;
-            ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
+            ball.move({(rand() % 700) + 100, (rand() % 700) + 100});
             second.setString(std::to_string(goalsBlue));
         }
-        for (const auto &b : Real) {
+        for (const auto &b : Team1) {
             window.draw(b);
         }
-        for (const auto &b : Bayern) {
+        for (const auto &b : Team2) {
             window.draw(b);
         }
-        first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
-        second.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25});
         window.draw(first);
         window.draw(second);
+        window.draw(predictionfirst);
+        window.draw(predictionsecond);
         window.draw(ball);
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
         window.display();
     }
-    window.
-
-            close();
+    window.close();
 
     return 0;
 }
