@@ -13,7 +13,7 @@ int main() {
     std::fstream tea1("../team1.txt");
     //std::fstream aa("../schema.txt"
     //Читаем состав);
-    std::find(skillsArrayRealMadrid.begin(), skillsArrayRealMadrid.end(), "alchash");
+    //std::find(skillsArrayRealMadrid.begin(), skillsArrayRealMadrid.end(), "alchash");
     std::string fileContents3;
     tea1 >> fileContents3;
     std::vector<std::string> team1(11);

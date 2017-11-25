@@ -4,8 +4,8 @@
 
 #ifndef FOOTBALLMANAGER_SCHEMAS_H
 #define FOOTBALLMANAGER_SCHEMAS_H
-#endif //FOOTBALLMANAGER_SCHEMAS_H
 
+#include <utility>
 #include <vector>
 #include <SFML/System/Vector2.hpp>
 #include <string>
@@ -55,7 +55,7 @@ std::vector<sf::Vector2f> SCHEME451 = {
         {365 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600}
 };
 
-std::list<std::string> REAL_SQUAD = {
+std::vector<std::string> REAL_SQUAD = {
         "Navas",
         "Marcelo",
         "Varane",
@@ -68,7 +68,7 @@ std::list<std::string> REAL_SQUAD = {
         "Benzema",
         "Bale"
 };
-std::list<std::string> BAYERN_SQUAD = {
+std::vector<std::string> BAYERN_SQUAD = {
         "Neuer",
         "Alaba",
         "Hummels",
@@ -81,7 +81,7 @@ std::list<std::string> BAYERN_SQUAD = {
         "Robben",
         "Lewa"
 };
-std::list<std::string> ARSENAL_SQUAD = {
+std::vector<std::string> ARSENAL_SQUAD = {
         "Cech",
         "Kolasinac",
         "Monreal",
@@ -94,7 +94,7 @@ std::list<std::string> ARSENAL_SQUAD = {
         "Lacazette",
         "Ozil"
 };
-std::list<std::string> CHELSEA_SQUAD = {
+std::vector<std::string> CHELSEA_SQUAD = {
         "Cortuois",
         "Alonso",
         "Azpilicueta",
@@ -122,6 +122,13 @@ std::map<std::string, std::vector<std::string> *> mapSquad = {
 };
 
 struct skills {
+    skills(const std::string &player, unsigned int skill_goalkeeper, unsigned int skill_defender,
+           unsigned int skill_midfielder, unsigned int skill_striker) : player(player),
+                                                                        skill_goalkeeper(skill_goalkeeper),
+                                                                        skill_defender(skill_defender),
+                                                                        skill_midfielder(skill_midfielder),
+                                                                        skill_striker(skill_striker) {}
+
     std::string player;
     unsigned int skill_goalkeeper = 0;
     unsigned int skill_defender = 0;
@@ -129,19 +136,19 @@ struct skills {
     unsigned int skill_striker = 0;
 };
 
-std::list<skills> skillsArrayRealMadrid = {
-        {"Navas",    85, 67, 40, 30},
-        {"Marcelo",  20, 87, 75, 81},
-        {"Varane",   34, 85, 59, 56},
-        {"Ramos",    43, 86, 62, 72},
-        {"Carvajal", 47, 84, 71, 69},
-        {"Modric",   23, 72, 90, 68},
-        {"Casemiro", 44, 81, 88, 68},
-        {"Kroos",    21, 70, 87, 43},
-        {"Ronaldo",  36, 20, 76, 95},
-        {"Benzema",  15, 20, 63, 81},
-        {"Bale",     30, 66, 63, 83}
-};
+std::vector<skills> skillsArrayRealMadrid = {
+        skills("Navas",    85, 67, 40, 30),
+        skills("Marcelo",  20, 87, 75, 81),
+        skills("Varane",   34, 85, 59, 56),
+        skills("Ramos",    43, 86, 62, 72),
+        skills("Carvajal", 47, 84, 71, 69),
+        skills("Modric",   23, 72, 90, 68),
+        skills("Casemiro", 44, 81, 88, 68),
+        skills("Kroos",    21, 70, 87, 43),
+        skills("Ronaldo",  36, 20, 76, 95),
+        skills("Benzema",  15, 20, 63, 81),
+        skills("Bale",     30, 66, 63, 83)
+};/*
 std::list<skills> skillsArrayRealMadrid = {
         {"Navas",    85, 67, 40, 30},
         {"Marcelo",  20, 87, 75, 81},
@@ -167,8 +174,8 @@ std::list<skills> skillsArrayRealMadrid = {
         {"Ronaldo",  36, 20, 76, 95},
         {"Benzema",  15, 20, 63, 81},
         {"Bale",     30, 66, 63, 83}
-};
-std::list<skills> skillsArrayChealsea = {
+};*/
+std::vector<skills> skillsArrayChealsea = {
         {"Courtois", 89, 67, 46, 31},
         {"Alonso", 15, 83, 75, 57},
         {"Azpilicueta", 36, 85, 59, 30},
@@ -181,3 +188,5 @@ std::list<skills> skillsArrayChealsea = {
         {"Morata", 15, 20, 63, 84},
         {"Pedro", 10, 32, 45, 83}
 };
+
+#endif //FOOTBALLMANAGER_SCHEMAS_H
