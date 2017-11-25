@@ -15,47 +15,47 @@
 //std::vector<sf::Vector2> schemaPervoiKomandy = SCHEME433;
 
 std::vector<sf::Vector2f> SCHEME433 = {
-        { 20 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
-        {120 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
-        {100 * SHIRINA_POLYA / 800 , 250 * VYSOTA_POLYA / 600},
-        {100 * SHIRINA_POLYA / 800 , 400 * VYSOTA_POLYA / 600},
-        {120 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600},
-        {200 * SHIRINA_POLYA / 800 , 100 * VYSOTA_POLYA / 600},
-        {200 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
-        {200 * SHIRINA_POLYA / 800 , 500 * VYSOTA_POLYA / 600},
-        {325 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
-        {365 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
-        {325 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600}
+        { 20 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
+        {120 * FBM_X_POLYA / 800 ,  50 * FBM_Y_POLYA / 600},
+        {100 * FBM_X_POLYA / 800 , 250 * FBM_Y_POLYA / 600},
+        {100 * FBM_X_POLYA / 800 , 400 * FBM_Y_POLYA / 600},
+        {120 * FBM_X_POLYA / 800 , 550 * FBM_Y_POLYA / 600},
+        {200 * FBM_X_POLYA / 800 , 100 * FBM_Y_POLYA / 600},
+        {200 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
+        {200 * FBM_X_POLYA / 800 , 500 * FBM_Y_POLYA / 600},
+        {325 * FBM_X_POLYA / 800 ,  50 * FBM_Y_POLYA / 600},
+        {365 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
+        {325 * FBM_X_POLYA / 800 , 550 * FBM_Y_POLYA / 600}
 };
 std::vector<sf::Vector2f> SCHEME532 = {
-        { 20 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
-        {175 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
-        {100 * SHIRINA_POLYA / 800 , 150 * VYSOTA_POLYA / 600},
-        {100 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
-        {100 * SHIRINA_POLYA / 800 , 450 * VYSOTA_POLYA / 600},
-        {175 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600},
-        {275 * SHIRINA_POLYA / 800 , 100 * VYSOTA_POLYA / 600},
-        {275 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
-        {275 * SHIRINA_POLYA / 800 , 500 * VYSOTA_POLYA / 600},
-        {365 * SHIRINA_POLYA / 800 , 250 * VYSOTA_POLYA / 600},
-        {365 * SHIRINA_POLYA / 800 , 350 * VYSOTA_POLYA / 600}
+        { 20 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
+        {175 * FBM_X_POLYA / 800 ,  50 * FBM_Y_POLYA / 600},
+        {100 * FBM_X_POLYA / 800 , 150 * FBM_Y_POLYA / 600},
+        {100 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
+        {100 * FBM_X_POLYA / 800 , 450 * FBM_Y_POLYA / 600},
+        {175 * FBM_X_POLYA / 800 , 550 * FBM_Y_POLYA / 600},
+        {275 * FBM_X_POLYA / 800 , 100 * FBM_Y_POLYA / 600},
+        {275 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
+        {275 * FBM_X_POLYA / 800 , 500 * FBM_Y_POLYA / 600},
+        {365 * FBM_X_POLYA / 800 , 250 * FBM_Y_POLYA / 600},
+        {365 * FBM_X_POLYA / 800 , 350 * FBM_Y_POLYA / 600}
 };
 
 std::vector<sf::Vector2f> SCHEME451 = {
-        { 20 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
-        {120 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
-        {100 * SHIRINA_POLYA / 800 , 250 * VYSOTA_POLYA / 600},
-        {100 * SHIRINA_POLYA / 800 , 400 * VYSOTA_POLYA / 600},
-        {120 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600},
-        {260 * SHIRINA_POLYA / 800 ,  50 * VYSOTA_POLYA / 600},
-        {260 * SHIRINA_POLYA / 800 , 175 * VYSOTA_POLYA / 600},
-        {260 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600},
-        {260 * SHIRINA_POLYA / 800 , 425 * VYSOTA_POLYA / 600},
-        {260 * SHIRINA_POLYA / 800 , 550 * VYSOTA_POLYA / 600},
-        {365 * SHIRINA_POLYA / 800 , 300 * VYSOTA_POLYA / 600}
+        { 20 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
+        {120 * FBM_X_POLYA / 800 ,  50 * FBM_Y_POLYA / 600},
+        {100 * FBM_X_POLYA / 800 , 250 * FBM_Y_POLYA / 600},
+        {100 * FBM_X_POLYA / 800 , 400 * FBM_Y_POLYA / 600},
+        {120 * FBM_X_POLYA / 800 , 550 * FBM_Y_POLYA / 600},
+        {260 * FBM_X_POLYA / 800 ,  50 * FBM_Y_POLYA / 600},
+        {260 * FBM_X_POLYA / 800 , 175 * FBM_Y_POLYA / 600},
+        {260 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
+        {260 * FBM_X_POLYA / 800 , 425 * FBM_Y_POLYA / 600},
+        {260 * FBM_X_POLYA / 800 , 550 * FBM_Y_POLYA / 600},
+        {365 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600}
 };
 
-std::list<std::string> REAL_SQUAD = {
+std::vector<std::string> REAL_SQUAD = {
         "Navas",
         "Marcelo",
         "Varane",
@@ -68,7 +68,7 @@ std::list<std::string> REAL_SQUAD = {
         "Benzema",
         "Bale"
 };
-std::list<std::string> BAYERN_SQUAD = {
+std::vector<std::string> BAYERN_SQUAD = {
         "Neuer",
         "Alaba",
         "Hummels",
@@ -81,7 +81,7 @@ std::list<std::string> BAYERN_SQUAD = {
         "Robben",
         "Lewa"
 };
-std::list<std::string> ARSENAL_SQUAD = {
+std::vector<std::string> ARSENAL_SQUAD = {
         "Cech",
         "Kolasinac",
         "Monreal",
@@ -94,7 +94,7 @@ std::list<std::string> ARSENAL_SQUAD = {
         "Lacazette",
         "Ozil"
 };
-std::list<std::string> CHELSEA_SQUAD = {
+std::vector<std::string> CHELSEA_SQUAD = {
         "Cortuois",
         "Alonso",
         "Azpilicueta",
@@ -114,7 +114,7 @@ std::map<std::string, std::vector<sf::Vector2f> *> mapScheme = {
         {"SCHEME451", &SCHEME451}
 };
 
-std::map<std::string, std::list<std::string> *> mapSquad = {
+std::map<std::string, std::vector<std::string> *> mapSquad = {
         {"REAL", &REAL_SQUAD},
         {"BAYERN", &BAYERN_SQUAD},
         {"ARSENAL", &ARSENAL_SQUAD},
@@ -139,7 +139,7 @@ struct skills {
 
 };
 
-std::list<skills> skillsArray = {
+std::vector<skills> skillsArray = {
         {"Navas",       85, 67, 40, 30},
         {"Marcelo",     20, 87, 75, 81},
         {"Varane",      34, 85, 59, 56},

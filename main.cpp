@@ -2,32 +2,28 @@
 #include <SFML/Graphics.hpp>
 #include "src/RoundObj.h"
 #include "OurTeam.h"
-#include <math.h>
-#include "src/const.h"
 #include <fstream>
-#include "src/Schemas.h"
-
-int totalskill1 = 0;
-int totalskill2 = 0;
+#include <cmath>
 
 int main() {
     unsigned int a = 0;
     std::fstream sch1("../schema.txt");
     std::fstream sch2("../schema2.txt");
     std::fstream tea1("../team1.txt");
-    //std::fstream aa("../schema.txt"
-    //Читаем состав);
+    //std::fstream aa("../schema.txt");
+
+    //Читаем состав
     std::string fileContents3;
     tea1 >> fileContents3;
-    std::list<std::string> team1(11);
+    std::vector<std::string> team1(11);
     try {
         team1 = *mapSquad.at(fileContents3);
     } catch (const std::out_of_range &exp) {
         std::cout << exp.what() << '\n';
         std::exit(EXIT_FAILURE);
     }
-    /*a = 0;
-    for (RoundObj &tmp2 : Bayern) {
+    a = 0;
+    /*for (RoundObj &tmp2 : Bayern) {
         try {
             sf::Image heroimage;
             if (!heroimage.loadFromFile("../assets/" + team1[a] + ".png")) {
@@ -75,9 +71,9 @@ int main() {
         std::exit(EXIT_FAILURE);
     }
     a = 0;
-    for (RoundObj &player : Team2) {
+    for (RoundObj &tmp2 : Team2) {
         try {
-            player.move({800 - schema2.at(a).x, schema2.at(a).y});
+            tmp2.move({800 - schema2.at(a).x, schema2.at(a).y});
         } catch (std::out_of_range &exp) {
             std::cout << exp.what();
             std::exit(EXIT_FAILURE);
@@ -104,7 +100,7 @@ int main() {
 
     srand(static_cast<unsigned int>(time(nullptr)));
 
-    sf::RenderWindow window(sf::VideoMode(SHIRINA_EKRANA, VYSOTA_EKRANA), "Window");
+    sf::RenderWindow window(sf::VideoMode(FBM_X_EKRANA, FBM_Y_EKRANA), "Window");
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
 
@@ -118,6 +114,59 @@ int main() {
     footballpole.loadFromImage(footballpoleI);
 
     sf::Sprite fbp(footballpole);
+
+    sf::Font font;
+    font.loadFromFile("../Arial.ttf");
+    sf::Text first("0", font);
+    sf::Text second("0", font);
+
+    unsigned int totalskill2 = 0;
+    unsigned int totalskill1 = 0;
+
+    for (RoundObj &player : Team1) {
+        if (player.skill_goalkeeper >= player.skill_defender and
+            player.skill_goalkeeper >= player.skill_midfielder and
+            player.skill_goalkeeper >= player.skill_striker) {
+            totalskill1 += player.skill_goalkeeper;
+        } else if (player.skill_defender >= player.skill_goalkeeper and
+                   player.skill_defender >= player.skill_midfielder and
+                   player.skill_defender >= player.skill_striker) {
+            totalskill1 += player.skill_defender;
+        } else if (player.skill_midfielder >= player.skill_goalkeeper and
+                   player.skill_midfielder >= player.skill_defender and
+                   player.skill_midfielder >= player.skill_striker) {
+            totalskill1 += player.skill_midfielder;
+        } else {
+            totalskill1 += player.skill_striker;
+        }
+    }
+    for (RoundObj &player : Team2) {
+        if (player.skill_goalkeeper >= player.skill_defender and
+            player.skill_goalkeeper >= player.skill_midfielder and
+            player.skill_goalkeeper >= player.skill_striker) {
+            totalskill2 += player.skill_goalkeeper;
+        } else if (player.skill_defender >= player.skill_goalkeeper and
+                   player.skill_defender >= player.skill_midfielder and
+                   player.skill_defender >= player.skill_striker) {
+            totalskill2 += player.skill_defender;
+        } else if (player.skill_midfielder >= player.skill_goalkeeper and
+                   player.skill_midfielder >= player.skill_defender and
+                   player.skill_midfielder >= player.skill_striker) {
+            totalskill2 += player.skill_midfielder;
+        } else {
+            totalskill2 += player.skill_striker;
+        }
+    }
+
+    first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
+    second.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25});
+
+    sf::Text predictionfirst(std::to_string(int(totalskill1 / 20)), font);
+    sf::Text predictionsecond(std::to_string(int(totalskill2 / 20)), font);
+
+    predictionfirst.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 100});
+    predictionsecond.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25 + 100});
+
 
     // Главный цикл приложения
     auto current = Team1.begin();
@@ -205,13 +254,15 @@ int main() {
         }
 
 
-        if (ball.isNear({0, 400 / 2})) {
+        if (ball.isNear({5, FBM_Y_POLYA / 2})) {
             goalsRed++;
-            ball.move({rand() % 700, rand() % 500});
+            ball.move({(rand() % 700) + 100, (rand() % 700) + 100});
+            first.setString(std::to_string(goalsRed));
         }
-        if (ball.isNear({window.getSize().x, 400 / 2})) {
+        if (ball.isNear({FBM_X_POLYA - 5, FBM_Y_POLYA / 2})) {
             goalsBlue++;
-            ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
+            ball.move({(rand() % 700) + 100, (rand() % 700) + 100});
+            second.setString(std::to_string(goalsBlue));
         }
         for (const auto &b : Team1) {
             window.draw(b);
@@ -219,54 +270,15 @@ int main() {
         for (const auto &b : Team2) {
             window.draw(b);
         }
+        window.draw(first);
+        window.draw(second);
+        window.draw(predictionfirst);
+        window.draw(predictionsecond);
         window.draw(ball);
-
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
         window.display();
     }
-
-    for (RoundObj &player : Team1) {
-        if (player.skill_goalkeeper >= player.skill_defender and
-            player.skill_goalkeeper >= player.skill_midfielder and
-            player.skill_goalkeeper >= player.skill_striker) {
-            totalskill1 += player.skill_goalkeeper;
-        } else if (player.skill_defender >= player.skill_goalkeeper and
-                   player.skill_defender >= player.skill_midfielder and
-                   player.skill_defender >= player.skill_striker) {
-            totalskill1 += player.skill_defender;
-        } else if (player.skill_midfielder >= player.skill_goalkeeper and
-                   player.skill_midfielder >= player.skill_defender and
-                   player.skill_midfielder >= player.skill_striker) {
-            totalskill1 += player.skill_midfielder;
-        } else {
-            totalskill1 += player.skill_striker;
-        }
-    }
-    for (RoundObj &player : Team2) {
-        if (player.skill_goalkeeper >= player.skill_defender and
-            player.skill_goalkeeper >= player.skill_midfielder and
-            player.skill_goalkeeper >= player.skill_striker) {
-            totalskill2 += player.skill_goalkeeper;
-        } else if (player.skill_defender >= player.skill_goalkeeper and
-                   player.skill_defender >= player.skill_midfielder and
-                   player.skill_defender >= player.skill_striker) {
-            totalskill2 += player.skill_defender;
-        } else if (player.skill_midfielder >= player.skill_goalkeeper and
-                   player.skill_midfielder >= player.skill_defender and
-                   player.skill_midfielder >= player.skill_striker) {
-            totalskill2 += player.skill_midfielder;
-        } else {
-            totalskill2 += player.skill_striker;
-        }
-    }
-    std::cout << goalsRed << '\n';
-    std::cout << goalsBlue << '\n';
-    std::cout << "schet = " << round((totalskill1 - 900) / 20) << ':' << round((totalskill2 - 900) / 20) << '\n';
-    int sluch_goly = 1;
-    totalskill1 += -20 * sluch_goly + rand() % (41 * sluch_goly) - 900;
-    totalskill2 += -20 * sluch_goly + rand() % (41 * sluch_goly) - 900;
-    std::cout << "schet = " << round(totalskill1 / 20) << ':' << round(totalskill2 / 20) << '\n';
     window.close();
 
     return 0;

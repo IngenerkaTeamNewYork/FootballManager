@@ -9,6 +9,6 @@ add_executable(testfb src/tests/test.cpp src/tests/doctest.h)
 set(SOURCE_FILES
         src/RoundObj.h
         main.cpp
-        OurTeam.h src/Schemas.h)
+        OurTeam.h src/Schemas.h src/const.h)
 
 add_executable(FootballManager ${SOURCE_FILES})
