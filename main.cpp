@@ -23,7 +23,7 @@ int main() {
         std::exit(EXIT_FAILURE);
     }
     a = 0;
-    for (RoundObj &tmp2 : Bayern) {
+    /*for (RoundObj &tmp2 : Bayern) {
         try {
             sf::Image heroimage;
             if (!heroimage.loadFromFile("../assets/" + team1[a] + ".png")) {
@@ -37,7 +37,7 @@ int main() {
             std::exit(EXIT_FAILURE);
         }
         a++;
-    }
+    }*/
     //Уже не читаем состав
 
 
@@ -87,7 +87,7 @@ int main() {
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
 
-    RoundObj ball(20, "-", sf::Color::White);
+    RoundObj ball(20, "-",0, sf::Color::White);
     ball.move({400, 300});
 
     int currentPlayer = 0; // max = 20
@@ -192,12 +192,12 @@ int main() {
         if (ball.isNear({0, FBM_Y_POLYA / 2})) {
             goalsRed++;
             ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
-            first.setString(goalsRed);
+            second.setString(std::to_string(goalsRed));
         }
         if (ball.isNear({FBM_X_POLYA, FBM_Y_POLYA / 2})) {
             goalsBlue++;
             ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
-            second.setString(goalsBlue);
+            second.setString(std::to_string(goalsBlue));
         }
         for (const auto &b : Real) {
             window.draw(b);
@@ -206,8 +206,9 @@ int main() {
             window.draw(b);
         }
         first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
-        second.setPosition({FBM_X_EKRANA / 2, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 50});
+        second.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25});
         window.draw(first);
+        window.draw(second);
         window.draw(ball);
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
