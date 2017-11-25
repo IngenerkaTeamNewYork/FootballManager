@@ -8,7 +8,7 @@ auto SCHEME = [&mapScheme](int a){return mapScheme["SCHEME433"]->at(a);};
 const std::string mainFolder = "../assets/";
 
 unsigned int goalsRed = 0;
-std::vector<RoundObj> Real = {
+std::vector<RoundObj> Team1 = {
         RoundObj(20, "Navas"   , 0,sf::Color::Black,sf::Color::White),
         RoundObj(20, "Marcelo" , 0,sf::Color::Blue ,sf::Color::White),
         RoundObj(20, "Varane"  , 0,sf::Color::Blue ,sf::Color::White),
@@ -23,7 +23,7 @@ std::vector<RoundObj> Real = {
 };
 
 unsigned int goalsBlue = 0;
-std::vector<RoundObj> Bayern = {
+std::vector<RoundObj> Team2 = {
         RoundObj(20, "Neuer"    , 0,sf::Color::Blue  ,sf::Color::Red),
         RoundObj(20, "Alaba"    , 0,sf::Color::Blue  ,sf::Color::Red),
         RoundObj(20, "Boateng"  , 0,sf::Color::Blue  ,sf::Color::Red),

@@ -17,12 +17,20 @@ public:
     unsigned int radius = 0;
     sf::Vector2f pos;
     sf::Vector2f posv;
+    std::string name;
+
+    unsigned int skill_goalkeeper = 0;
+    unsigned int skill_defender = 0;
+    unsigned int skill_midfielder = 0;
+    unsigned int skill_striker = 0;
+
 
     RoundObj(const unsigned int &radius, const std::string &footballerName, const std::uint8_t skill,
                const sf::Color &fillColor,
                const sf::Color &outlineColor = sf::Color::White) {
         this->radius = radius;
         this->pos = pos;
+        this->name = footballerName;
         this->posv = {10 + skill, 10 + skill};
 
         if (footballerName != "-") {
@@ -51,10 +59,23 @@ public:
         this->texture = f.texture;
         this->obj.setTexture(&this->texture);
         this->pos = f.pos;
+        this->name = f.name;
 
+        this->skill_goalkeeper = f.skill_goalkeeper;
+        this->skill_defender = f.skill_defender;
+        this->skill_midfielder = f.skill_midfielder;
+        this->skill_striker = f.skill_striker;
 
         this->posv = f.posv;
         this->havePic = f.havePic;
+    }
+
+    void setSkills(unsigned int skill_goalkeeper, unsigned int skill_defender, unsigned int skill_midfielder,
+                   unsigned int skill_striker) {
+        this->skill_goalkeeper = skill_goalkeeper;
+        this->skill_defender = skill_defender;
+        this->skill_midfielder = skill_midfielder;
+        this->skill_striker = skill_striker;
     }
 
     void move(const sf::Vector2f &pos) {
