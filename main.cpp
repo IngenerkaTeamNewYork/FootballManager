@@ -4,15 +4,16 @@
 #include "OurTeam.h"
 #include "src/const.h"
 #include <fstream>
+#include "src/Schemas.h"
 
 int main() {
     unsigned int a = 0;
     std::fstream sch1("../schema.txt");
     std::fstream sch2("../schema2.txt");
     std::fstream tea1("../team1.txt");
-    //std::fstream aa("../schema.txt");
-
-    //Читаем состав
+    //std::fstream aa("../schema.txt"
+    //Читаем состав);
+    //std::find(skillsArrayRealMadrid.begin(), skillsArrayRealMadrid.end(), "alchash");
     std::string fileContents3;
     tea1 >> fileContents3;
     std::vector<std::string> team1(11);
@@ -22,7 +23,7 @@ int main() {
         std::cout << exp.what() << '\n';
         std::exit(EXIT_FAILURE);
     }
-    a = 0;
+    /*a = 0;
     for (RoundObj &tmp2 : Bayern) {
         try {
             sf::Image heroimage;
@@ -37,7 +38,7 @@ int main() {
             std::exit(EXIT_FAILURE);
         }
         a++;
-    }
+    }*/
     //Уже не читаем состав
 
 
@@ -87,7 +88,7 @@ int main() {
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
 
-    RoundObj ball(20, "-", sf::Color::White);
+    RoundObj ball(20, "-", 0, sf::Color::White);
     ball.move({400, 300});
 
     int currentPlayer = 0; // max = 20
