@@ -83,7 +83,7 @@ int main() {
 
     srand(static_cast<unsigned int>(time(nullptr)));
 
-    sf::RenderWindow window(sf::VideoMode(SHIRINA_EKRANA, VYSOTA_EKRANA), "Window");
+    sf::RenderWindow window(sf::VideoMode(FBM_X_EKRANA, FBM_Y_EKRANA), "Window");
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);  // Do not remove!
 
@@ -97,6 +97,11 @@ int main() {
     footballpole.loadFromImage(footballpoleI);
 
     sf::Sprite fbp(footballpole);
+
+    sf::Font font;
+    font.loadFromFile("../Arial.ttf");
+    sf::Text first("0", font);
+    sf::Text second("0", font);
 
     // Главный цикл приложения
     auto current = Real.begin();
@@ -184,13 +189,15 @@ int main() {
         }
 
 
-        if (ball.isNear({0, 400 / 2})) {
+        if (ball.isNear({0, FBM_Y_POLYA / 2})) {
             goalsRed++;
-            ball.move({rand() % 700, rand() % 500});
+            ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
+            first.setString(goalsRed);
         }
-        if (ball.isNear({window.getSize().x, 400 / 2})) {
+        if (ball.isNear({FBM_X_POLYA, FBM_Y_POLYA / 2})) {
             goalsBlue++;
             ball.move({(rand() % 700) + 100, (rand() % 500) + 100});
+            second.setString(goalsBlue);
         }
         for (const auto &b : Real) {
             window.draw(b);
@@ -198,14 +205,14 @@ int main() {
         for (const auto &b : Bayern) {
             window.draw(b);
         }
+        first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
+        second.setPosition({FBM_X_EKRANA / 2, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 50});
+        window.draw(first);
         window.draw(ball);
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
         window.display();
     }
-
-    std::cout << goalsRed << '\n';
-    std::cout << goalsBlue << '\n';
     window.
 
             close();
