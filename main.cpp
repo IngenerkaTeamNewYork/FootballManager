@@ -123,6 +123,7 @@ int main() {
     unsigned int totalskill2 = 0;
     unsigned int totalskill1 = 0;
 
+
     for (RoundObj &player : Team1) {
         if (player.skill_goalkeeper >= player.skill_defender and
             player.skill_goalkeeper >= player.skill_midfielder and
@@ -140,22 +141,34 @@ int main() {
             totalskill1 += player.skill_striker;
         }
     }
+
+
+    int pos = 1;
+
     for (RoundObj &player : Team2) {
-        if (player.skill_goalkeeper >= player.skill_defender and
-            player.skill_goalkeeper >= player.skill_midfielder and
-            player.skill_goalkeeper >= player.skill_striker) {
+
+        if (pos == 1)
             totalskill2 += player.skill_goalkeeper;
-        } else if (player.skill_defender >= player.skill_goalkeeper and
-                   player.skill_defender >= player.skill_midfielder and
-                   player.skill_defender >= player.skill_striker) {
+        else if (schema2 == SCHEME532 and pos >= 2 and pos <= 6)
             totalskill2 += player.skill_defender;
-        } else if (player.skill_midfielder >= player.skill_goalkeeper and
-                   player.skill_midfielder >= player.skill_defender and
-                   player.skill_midfielder >= player.skill_striker) {
+        else if (schema2 == SCHEME433 and pos >= 2 and pos <= 5)
+            totalskill2 += player.skill_defender;
+        else if (schema2 == SCHEME451 and pos >= 2 and pos <= 5)
+            totalskill2 += player.skill_defender;
+        else if (schema2 == SCHEME532 and pos >= 7 and pos <= 9)
             totalskill2 += player.skill_midfielder;
-        } else {
+        else if (schema2 == SCHEME433 and pos >= 6 and pos <= 8)
+            totalskill2 += player.skill_midfielder;
+        else if (schema2 == SCHEME451 and pos >= 6 and pos <= 10)
+            totalskill2 += player.skill_midfielder;
+        else if (schema2 == SCHEME532 and pos >= 10)
             totalskill2 += player.skill_striker;
-        }
+        else if (schema2 == SCHEME433 and pos >= 9)
+            totalskill2 += player.skill_striker;
+        else if (schema2 == SCHEME451 and pos >= 11)
+            totalskill2 += player.skill_striker;
+
+        pos++;
     }
 
     first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
