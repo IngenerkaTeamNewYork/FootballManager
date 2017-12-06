@@ -107,6 +107,33 @@ std::vector<std::string> CHELSEA_SQUAD = {
         "Morata",
         "Pedro"
 };
+std::vector<std::string> NIGGAZ_SQUAD = {
+        "Alaba",
+        "Boateng",
+        "Lacazette",
+        "Lacazette",
+        "Boateng",
+        "Alaba",
+        "Kante",
+        "Kante",
+        "Kante",
+        "Boateng",
+        "Boateng"
+};
+std::vector<std::string> UBOGIE_SQUAD = {
+        "Fruchtl",
+        "Fruchtl",
+        "Fruchtl",
+        "Fruchtl",
+        "Fruchtl",
+        "Fruchtl",
+        "judge3",
+        "judge3",
+        "judge3",
+        "judge3",
+        "judge3"
+};
+
 
 std::map<std::string, std::vector<sf::Vector2f> *> mapScheme = {
         {"SCHEME433", &SCHEME433},
@@ -115,10 +142,13 @@ std::map<std::string, std::vector<sf::Vector2f> *> mapScheme = {
 };
 
 std::map<std::string, std::vector<std::string> *> mapSquad = {
-        {"REAL", &REAL_SQUAD},
-        {"BAYERN", &BAYERN_SQUAD},
+        {"REAL",    &REAL_SQUAD},
+        {"BAYERN",  &BAYERN_SQUAD},
         {"ARSENAL", &ARSENAL_SQUAD},
-        {"CHELSEA", &CHELSEA_SQUAD}
+        {"CHELSEA", &CHELSEA_SQUAD},
+        {"NIGGAZ",  &NIGGAZ_SQUAD},
+        {"UBOGIE",  &UBOGIE_SQUAD}
+
 };
 
 struct skills {
@@ -140,21 +170,21 @@ struct skills {
 };
 
 std::vector<skills> skillsArray = {
-        {"Navas",       85, 55, 19, 10},
-        {"Marcelo",     20, 87, 70, 57},
-        {"Varane",      34, 85, 40, 26},
-        {"Ramos",       43, 86, 62, 72},
-        {"Carvajal",    47, 84, 71, 23},
-        {"Modric",      23, 72, 90, 35},
-        {"Casemiro",    24, 81, 88, 17},
-        {"Kroos",       21, 70, 87, 43},
-        {"Ronaldo",     36, 20, 75, 95},
-        {"Benzema",     15, 20, 63, 85},
-        {"Bale",        30, 66, 63, 84},
+        {"Alaba",     85, 55, 19, 10},
+        {"Marcelo",   20, 87, 70, 57},
+        {"Varane",    34, 85, 40, 26},
+        {"Ramos",     43, 86, 62, 72},
+        {"Carvajal",  47, 84, 71, 23},
+        {"Modric",    23, 72, 90, 35},
+        {"Casemiro",  24, 81, 88, 17},
+        {"Kroos",     21, 70, 87, 43},
+        {"Ronaldo",   36, 20, 75, 95},
+        {"Benzema",   15, 20, 63, 85},
+        {"Bale",      30, 66, 63, 84},
 
 
-        {"Courtois",    87, 43, 25, 18},
-        {"Alonso",      15, 82, 66, 36},
+        {"Courtois",  87, 43, 25, 18},
+        {"Alonso",    15, 82, 66, 36},
         {"Azpilicueta", 36, 84, 48, 30},
         {"Luiz",        43, 86, 81, 25},
         {"Cahill",      61, 80, 42, 23},
@@ -174,22 +204,23 @@ std::vector<skills> skillsArray = {
         {"Thiago",      33, 34, 87, 35},
         {"Ribery",      21, 13, 81, 86},
         {"Rodriguez",   22, 20, 81, 85},
-        {"Robben",      20, 20, 86, 90},
-        {"Lewa",        32, 32, 80, 93},
+        {"Robben",    20, 20, 86, 90},
+        {"Lewa",      32, 32, 80, 93},
 
-        {"Cech",        85, 57, 46, 31},
-        {"Kolasinac",   15, 84, 75, 40},
-        {"Monreal",     36, 76, 55, 32},
-        {"Mustafi",     40, 85, 61, 27},
-        {"Koscielny",   37, 85, 42, 23},
-        {"Bellerin",    20, 78, 43, 33},
-        {"Xhaka",       14, 48, 82, 26},
-        {"Ramsey",      21, 49, 85, 50},
-        {"Alexis",      10, 49, 84, 92},
-        {"Lacazette",   27, 25, 66, 85},
-        {"Ozil",        10, 32, 87, 83},
+        {"Cech",      85, 57, 46, 31},
+        {"Kolasinac", 15, 84, 75, 40},
+        {"Monreal",   36, 76, 55, 32},
+        {"Mustafi",   40, 85, 61, 27},
+        {"Koscielny", 37, 85, 42, 23},
+        {"Bellerin",  20, 78, 43, 33},
+        {"Xhaka",     14, 48, 82, 26},
+        {"Ramsey",    21, 49, 85, 50},
+        {"Alexis",    10, 49, 84, 92},
+        {"Lacazette", 27, 25, 66, 85},
+        {"Ozil",      10, 32, 87, 83},
 
-
+        {"Fruchtl",   10, 10, 10, 10},
+        {"judge3",    20, 20, 15, 10}
 
 
 };

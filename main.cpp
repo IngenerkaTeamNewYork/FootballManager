@@ -7,10 +7,10 @@
 
 int main() {
     unsigned int a = 0;
-    std::fstream sch1("../schema.txt");
+    std::fstream sch1("../schema1.txt");
     std::fstream sch2("../schema2.txt");
     std::fstream tea1("../team1.txt");
-    //std::fstream aa("../schema.txt");
+    std::fstream tea2("../team2.txt");
 
     //Читаем состав
     std::string fileContents3;
@@ -22,22 +22,59 @@ int main() {
         std::cout << exp.what() << '\n';
         std::exit(EXIT_FAILURE);
     }
+
+    tea2 >> fileContents3;
+    std::vector<std::string> team2(11);
+    try {
+        team2 = *mapSquad.at(fileContents3);
+    } catch (const std::out_of_range &exp) {
+        std::cout << exp.what() << '\n';
+        std::exit(EXIT_FAILURE);
+    }
+
     a = 0;
-    /*for (RoundObj &tmp2 : Bayern) {
+    for (RoundObj &player : Team1) {
         try {
             sf::Image heroimage;
+            sf::Texture texture;
             if (!heroimage.loadFromFile("../assets/" + team1[a] + ".png")) {
                 throw std::runtime_error("Image not found.");
             }
-            if (!tmp2.texture.loadFromImage(heroimage)) {
-                throw std::runtime_error("Image not found.");
-            }
+
+            // player.setColor(sf::Color::Black);
+
+            texture.loadFromImage(heroimage);
+            player.setTexture(texture);
+            player.name = team1[a];
+
         } catch (std::out_of_range &exp) {
             std::cout << exp.what();
             std::exit(EXIT_FAILURE);
         }
         a++;
-    }*/
+    }
+
+    a = 0;
+    for (RoundObj &player : Team2) {
+        try {
+            sf::Image heroimage;
+            sf::Texture texture;
+            if (!heroimage.loadFromFile("../assets/" + team2[a] + ".png")) {
+                throw std::runtime_error("Image not found.");
+            }
+
+            texture.loadFromImage(heroimage);
+            player.setTexture(texture);
+            player.name = team2[a];
+
+        } catch (std::out_of_range &exp) {
+            std::cout << exp.what();
+            std::exit(EXIT_FAILURE);
+        }
+        a++;
+    }
+
+
     //Уже не читаем состав
 
 
@@ -142,34 +179,24 @@ int main() {
         }
     }
 
-
-    int pos = 1;
-
     for (RoundObj &player : Team2) {
-
-        if (pos == 1)
+        if (player.skill_goalkeeper >= player.skill_defender and
+            player.skill_goalkeeper >= player.skill_midfielder and
+            player.skill_goalkeeper >= player.skill_striker) {
             totalskill2 += player.skill_goalkeeper;
-        else if (schema2 == SCHEME532 and pos >= 2 and pos <= 6)
+        } else if (player.skill_defender >= player.skill_goalkeeper and
+                   player.skill_defender >= player.skill_midfielder and
+                   player.skill_defender >= player.skill_striker) {
             totalskill2 += player.skill_defender;
-        else if (schema2 == SCHEME433 and pos >= 2 and pos <= 5)
-            totalskill2 += player.skill_defender;
-        else if (schema2 == SCHEME451 and pos >= 2 and pos <= 5)
-            totalskill2 += player.skill_defender;
-        else if (schema2 == SCHEME532 and pos >= 7 and pos <= 9)
+        } else if (player.skill_midfielder >= player.skill_goalkeeper and
+                   player.skill_midfielder >= player.skill_defender and
+                   player.skill_midfielder >= player.skill_striker) {
             totalskill2 += player.skill_midfielder;
-        else if (schema2 == SCHEME433 and pos >= 6 and pos <= 8)
-            totalskill2 += player.skill_midfielder;
-        else if (schema2 == SCHEME451 and pos >= 6 and pos <= 10)
-            totalskill2 += player.skill_midfielder;
-        else if (schema2 == SCHEME532 and pos >= 10)
+        } else {
             totalskill2 += player.skill_striker;
-        else if (schema2 == SCHEME433 and pos >= 9)
-            totalskill2 += player.skill_striker;
-        else if (schema2 == SCHEME451 and pos >= 11)
-            totalskill2 += player.skill_striker;
-
-        pos++;
+        }
     }
+
 
     first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
     second.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25});
