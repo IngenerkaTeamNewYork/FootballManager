@@ -107,6 +107,33 @@ std::vector<std::string> CHELSEA_SQUAD = {
         "Morata",
         "Pedro"
 };
+std::vector<std::string> NIGGAZ_SQUAD = {
+        "Alaba",
+        "Boateng",
+        "Lacazette",
+        "Lacazette",
+        "Boateng",
+        "Alaba",
+        "Kante",
+        "Kante",
+        "Kante",
+        "Boateng",
+        "Boateng"
+};
+std::vector<std::string> UBOGIE_SQUAD = {
+        "Fruchtl",
+        "Fruchtl",
+        "Fruchtl",
+        "Fruchtl",
+        "Fruchtl",
+        "Fruchtl",
+        "judge3",
+        "judge3",
+        "judge3",
+        "judge3",
+        "judge3"
+};
+
 
 std::map<std::string, std::vector<sf::Vector2f> *> mapScheme = {
         {"SCHEME433", &SCHEME433},
@@ -115,10 +142,13 @@ std::map<std::string, std::vector<sf::Vector2f> *> mapScheme = {
 };
 
 std::map<std::string, std::vector<std::string> *> mapSquad = {
-        {"REAL", &REAL_SQUAD},
-        {"BAYERN", &BAYERN_SQUAD},
+        {"REAL",    &REAL_SQUAD},
+        {"BAYERN",  &BAYERN_SQUAD},
         {"ARSENAL", &ARSENAL_SQUAD},
-        {"CHELSEA", &CHELSEA_SQUAD}
+        {"CHELSEA", &CHELSEA_SQUAD},
+        {"NIGGAZ",  &NIGGAZ_SQUAD},
+        {"UBOGIE",  &UBOGIE_SQUAD}
+
 };
 
 struct skills {
@@ -140,56 +170,57 @@ struct skills {
 };
 
 std::vector<skills> skillsArray = {
-        {"Navas",       85, 67, 40, 30},
-        {"Marcelo",     20, 87, 75, 81},
-        {"Varane",      34, 85, 59, 56},
-        {"Ramos",       43, 86, 62, 72},
-        {"Carvajal",    47, 84, 71, 69},
-        {"Modric",      23, 72, 90, 68},
-        {"Casemiro",    44, 81, 88, 68},
-        {"Kroos",       21, 70, 87, 43},
-        {"Ronaldo",     36, 20, 76, 95},
-        {"Benzema",     15, 20, 63, 81},
-        {"Bale",        30, 66, 63, 83},
+        {"Alaba",     85, 55, 19, 10},
+        {"Marcelo",   20, 87, 70, 57},
+        {"Varane",    34, 85, 40, 26},
+        {"Ramos",     43, 86, 62, 72},
+        {"Carvajal",  47, 84, 71, 23},
+        {"Modric",    23, 72, 90, 35},
+        {"Casemiro",  24, 81, 88, 17},
+        {"Kroos",     21, 70, 87, 43},
+        {"Ronaldo",   36, 20, 75, 95},
+        {"Benzema",   15, 20, 63, 85},
+        {"Bale",      30, 66, 63, 84},
 
 
-        {"Courtois",    87, 67, 46, 31},
-        {"Alonso",      15, 82, 75, 57},
-        {"Azpilicueta", 36, 84, 59, 30},
-        {"Luiz",        43, 86, 62, 25},
+        {"Courtois",  87, 43, 25, 18},
+        {"Alonso",    15, 82, 66, 36},
+        {"Azpilicueta", 36, 84, 48, 30},
+        {"Luiz",        43, 86, 81, 25},
         {"Cahill",      61, 80, 42, 23},
-        {"Moses",       21, 79, 54, 34},
-        {"Fabregas",    12, 56, 85, 35},
-        {"Kante",       21, 76, 85, 43},
-        {"Hazard",      36, 20, 54, 92},
-        {"Morata",      15, 20, 63, 84},
-        {"Pedro",       10, 32, 45, 83},
+        {"Moses",       21, 78, 46, 34},
+        {"Fabregas",    12, 56, 85, 72},
+        {"Kante",       21, 77, 85, 11},
+        {"Hazard",      36, 20, 88, 92},
+        {"Morata",      15, 20, 63, 85},
+        {"Pedro",       10, 32, 41, 83},
 
-        {"Neuer",       92, 67, 46, 31},
-        {"Alaba",       15, 85, 75, 57},
-        {"Hummels",     36, 84, 59, 30},
-        {"Boateng",     43, 86, 62, 25},
-        {"Kimmich",     61, 80, 42, 23},
-        {"Vidal",       21, 79, 54, 34},
-        {"Thiago",      12, 56, 85, 35},
-        {"Ribery",      21, 76, 85, 43},
-        {"Rodriguez",   36, 20, 54, 92},
-        {"Robben",      15, 20, 63, 84},
-        {"Lewa",        10, 32, 45, 83},
+        {"Neuer",       92, 57, 40, 30},
+        {"Alaba",       16, 85, 67, 47},
+        {"Hummels",     50, 89, 59, 30},
+        {"Boateng",     43, 87, 62, 25},
+        {"Kimmich",     65, 78, 42, 23},
+        {"Vidal",       30, 79, 88, 34},
+        {"Thiago",      33, 34, 87, 35},
+        {"Ribery",      21, 13, 81, 86},
+        {"Rodriguez",   22, 20, 81, 85},
+        {"Robben",    20, 20, 86, 90},
+        {"Lewa",      32, 32, 80, 93},
 
-        {"Cech",        85, 67, 46, 31},
-        {"Kolasinac",   15, 85, 75, 57},
-        {"Monreal",     36, 84, 59, 30},
-        {"Mustafi",     43, 86, 62, 25},
-        {"Koscielny",   61, 80, 42, 23},
-        {"Bellerin",    21, 79, 54, 34},
-        {"Xhaka",       12, 56, 85, 35},
-        {"Ramsey",      21, 76, 85, 43},
-        {"Alexis",      36, 20, 54, 92},
-        {"Lacazette",   15, 20, 63, 84},
-        {"Ozil",        10, 32, 45, 83},
+        {"Cech",      85, 57, 46, 31},
+        {"Kolasinac", 15, 84, 75, 40},
+        {"Monreal",   36, 76, 55, 32},
+        {"Mustafi",   40, 85, 61, 27},
+        {"Koscielny", 37, 85, 42, 23},
+        {"Bellerin",  20, 78, 43, 33},
+        {"Xhaka",     14, 48, 82, 26},
+        {"Ramsey",    21, 49, 85, 50},
+        {"Alexis",    10, 49, 84, 92},
+        {"Lacazette", 27, 25, 66, 85},
+        {"Ozil",      10, 32, 87, 83},
 
-
+        {"Fruchtl",   10, 10, 10, 10},
+        {"judge3",    20, 20, 15, 10}
 
 
 };

@@ -70,6 +70,14 @@ public:
         this->havePic = f.havePic;
     }
 
+    void setColor(const sf::Color &fillColor) {
+        this->obj.setFillColor(fillColor);
+    }
+
+    void setTexture(sf::Texture texture) {
+        this->texture = texture;
+    }
+
     void setSkills(unsigned int skill_goalkeeper, unsigned int skill_defender, unsigned int skill_midfielder,
                    unsigned int skill_striker) {
         this->skill_goalkeeper = skill_goalkeeper;

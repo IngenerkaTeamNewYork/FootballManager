@@ -24,7 +24,7 @@ std::vector<RoundObj> Team1 = {
 
 unsigned int goalsBlue = 0;
 std::vector<RoundObj> Team2 = {
-        RoundObj(20, "Neuer"    , 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Rodriguez", 0, sf::Color::Blue, sf::Color::Red),
         RoundObj(20, "Alaba"    , 0,sf::Color::Blue  ,sf::Color::Red),
         RoundObj(20, "Boateng"  , 0,sf::Color::Blue  ,sf::Color::Red),
         RoundObj(20, "Hummels"  , 0,sf::Color::Blue  ,sf::Color::Red),
@@ -32,7 +32,7 @@ std::vector<RoundObj> Team2 = {
         RoundObj(20, "Vidal"    , 0,sf::Color::Blue  ,sf::Color::Red),
         RoundObj(20, "Thiago"   , 0,sf::Color::Blue  ,sf::Color::Red),
         RoundObj(20, "Ribery"   , 0,sf::Color::Blue  ,sf::Color::Red),
-        RoundObj(20, "Rodriguez", 0,sf::Color::Blue  ,sf::Color::Red),
+        RoundObj(20, "Neuer", 0, sf::Color::Blue, sf::Color::Red),
         RoundObj(20, "Robben"   , 0,sf::Color::Blue  ,sf::Color::Red),
         RoundObj(20, "Lewa"     , 0,sf::Color::Blue  ,sf::Color::Red)
 };

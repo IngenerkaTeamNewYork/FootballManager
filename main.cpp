@@ -32,9 +32,76 @@ void totalskill(RoundObj *player, unsigned int *totalskill) {
 
 int main() {
     unsigned int a = 0;
-    std::fstream sch1("../schema.txt");
+    std::fstream sch1("../schema1.txt");
     std::fstream sch2("../schema2.txt");
     std::fstream tea1("../team1.txt");
+
+    std::fstream tea2("../team2.txt");
+
+    //Читаем состав
+    std::string fileContents3;
+    tea1 >> fileContents3;
+    std::vector<std::string> team1(11);
+    try {
+        team1 = *mapSquad.at(fileContents3);
+    } catch (const std::out_of_range &exp) {
+        std::cout << exp.what() << '\n';
+        std::exit(EXIT_FAILURE);
+    }
+
+    tea2 >> fileContents3;
+    std::vector<std::string> team2(11);
+    try {
+        team2 = *mapSquad.at(fileContents3);
+    } catch (const std::out_of_range &exp) {
+        std::cout << exp.what() << '\n';
+        std::exit(EXIT_FAILURE);
+    }
+
+    a = 0;
+    for (RoundObj &player : Team1) {
+        try {
+            sf::Image heroimage;
+            sf::Texture texture;
+            if (!heroimage.loadFromFile("../assets/" + team1[a] + ".png")) {
+                throw std::runtime_error("Image not found.");
+            }
+
+            // player.setColor(sf::Color::Black);
+
+            texture.loadFromImage(heroimage);
+            player.setTexture(texture);
+            player.name = team1[a];
+
+        } catch (std::out_of_range &exp) {
+            std::cout << exp.what();
+            std::exit(EXIT_FAILURE);
+        }
+        a++;
+    }
+
+    a = 0;
+    for (RoundObj &player : Team2) {
+        try {
+            sf::Image heroimage;
+            sf::Texture texture;
+            if (!heroimage.loadFromFile("../assets/" + team2[a] + ".png")) {
+                throw std::runtime_error("Image not found.");
+            }
+
+            texture.loadFromImage(heroimage);
+            player.setTexture(texture);
+            player.name = team2[a];
+
+        } catch (std::out_of_range &exp) {
+            std::cout << exp.what();
+            std::exit(EXIT_FAILURE);
+        }
+        a++;
+    }
+
+
+    //Уже не читаем состав
 
     std::string fileContents1;
     sch1 >> fileContents1;
@@ -112,12 +179,15 @@ int main() {
     unsigned int totalskill2 = 0;
     unsigned int totalskill1 = 0;
 
+
     for (RoundObj &player : Team1) {
         totalskill(&player, &totalskill1);
     }
+
     for (RoundObj &player : Team2) {
         totalskill(&player, &totalskill2);
     }
+
 
     first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
     second.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25});
