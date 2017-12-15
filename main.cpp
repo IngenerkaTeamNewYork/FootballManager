@@ -62,11 +62,11 @@ void totalSkill(RoundObj *player, unsigned int *totalskill) {
  */
 int main() {
     unsigned int a = 0;
-    std::fstream sch1("../schema1.txt");
-    std::fstream sch2("../schema2.txt");
-    std::fstream tea1("../team1.txt");
+    std::fstream sch1("../files/schema1.txt");
+    std::fstream sch2("../files/schema2.txt");
+    std::fstream tea1("../files/team1.txt");
 
-    std::fstream tea2("../team2.txt");
+    std::fstream tea2("../files/team2.txt");
 
     //Читаем состав
     std::string fileContents3;
