@@ -1,10 +1,9 @@
-//
-// Created by Admin on 11.11.2017.
-//
-#pragma once
+/**
+ * @file Schemas.h
+ * @brief Файл со всеми схемами
+ */
 #ifndef FOOTBALLMANAGER_SCHEMAS_H
 #define FOOTBALLMANAGER_SCHEMAS_H
-#endif //FOOTBALLMANAGER_SCHEMAS_H
 
 #include <vector>
 #include <SFML/System/Vector2.hpp>
@@ -12,8 +11,10 @@
 #include <list>
 #include "const.h"
 
-//std::vector<sf::Vector2> schemaPervoiKomandy = SCHEME433;
-
+/**
+ * @brief Схема 4-3-3 («тотальный футбол»)
+ * @see https://tinyurl.com/ycuaa2v8
+ */
 std::vector<sf::Vector2f> SCHEME433 = {
         { 20 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
         {120 * FBM_X_POLYA / 800 ,  50 * FBM_Y_POLYA / 600},
@@ -27,6 +28,11 @@ std::vector<sf::Vector2f> SCHEME433 = {
         {365 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
         {325 * FBM_X_POLYA / 800 , 550 * FBM_Y_POLYA / 600}
 };
+
+/**
+ * @brief Схема 5-3-2
+ * @see https://tinyurl.com/y94h6onk
+ */
 std::vector<sf::Vector2f> SCHEME532 = {
         { 20 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
         {175 * FBM_X_POLYA / 800 ,  50 * FBM_Y_POLYA / 600},
@@ -41,6 +47,10 @@ std::vector<sf::Vector2f> SCHEME532 = {
         {365 * FBM_X_POLYA / 800 , 350 * FBM_Y_POLYA / 600}
 };
 
+/**
+ * @brief Схема 4-5-1
+ * @see https://tinyurl.com/yc35rtha
+ */
 std::vector<sf::Vector2f> SCHEME451 = {
         { 20 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600},
         {120 * FBM_X_POLYA / 800 ,  50 * FBM_Y_POLYA / 600},
@@ -55,6 +65,9 @@ std::vector<sf::Vector2f> SCHEME451 = {
         {365 * FBM_X_POLYA / 800 , 300 * FBM_Y_POLYA / 600}
 };
 
+/**
+ * @brief Состав реала
+ */
 std::vector<std::string> REAL_SQUAD = {
         "Navas",
         "Marcelo",
@@ -68,6 +81,10 @@ std::vector<std::string> REAL_SQUAD = {
         "Benzema",
         "Bale"
 };
+
+/**
+ * @brief Состав баерна
+ */
 std::vector<std::string> BAYERN_SQUAD = {
         "Neuer",
         "Alaba",
@@ -81,6 +98,10 @@ std::vector<std::string> BAYERN_SQUAD = {
         "Robben",
         "Lewa"
 };
+
+/**
+ * @brief Состав арсенала
+ */
 std::vector<std::string> ARSENAL_SQUAD = {
         "Cech",
         "Kolasinac",
@@ -94,6 +115,10 @@ std::vector<std::string> ARSENAL_SQUAD = {
         "Lacazette",
         "Ozil"
 };
+
+/**
+ * @brief Состав челсии
+ */
 std::vector<std::string> CHELSEA_SQUAD = {
         "Cortuois",
         "Alonso",
@@ -107,6 +132,10 @@ std::vector<std::string> CHELSEA_SQUAD = {
         "Morata",
         "Pedro"
 };
+
+/**
+ * @brief Состав нигасов
+ */
 std::vector<std::string> NIGGAZ_SQUAD = {
         "Alaba",
         "Boateng",
@@ -120,6 +149,10 @@ std::vector<std::string> NIGGAZ_SQUAD = {
         "Boateng",
         "Boateng"
 };
+
+/**
+ * @brief Состав убогих
+ */
 std::vector<std::string> UBOGIE_SQUAD = {
         "Fruchtl",
         "Fruchtl",
@@ -151,6 +184,15 @@ std::map<std::string, std::vector<std::string> *> mapSquad = {
 
 };
 
+/**
+ * @brief Структура скилла
+ *
+ * В нем есть скиллы:
+ *   - защитника
+ *   - гоалкипера
+ *   - полузащитника
+ *   - нападающего
+ */
 struct skills {
     std::string player;
     unsigned int skill_goalkeeper = 0;
@@ -169,6 +211,11 @@ struct skills {
 
 };
 
+/**
+ * @brief Массив со скиллами.
+ *
+ * Нужен для предсказания счета игры
+ */
 std::vector<skills> skillsArray = {
         {"Alaba",     85, 55, 19, 10},
         {"Marcelo",   20, 87, 70, 57},
@@ -224,3 +271,5 @@ std::vector<skills> skillsArray = {
 
 
 };
+
+#endif //FOOTBALLMANAGER_SCHEMAS_H

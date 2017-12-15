@@ -1,3 +1,7 @@
+/**
+ * @file test.cpp
+ * @brief Тесты для проверки работоспособности программы
+ */
 //@formatter:off
 #include <random>
 #include "../RoundObj.h"

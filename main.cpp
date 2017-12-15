@@ -1,3 +1,10 @@
+/**
+ * @name Football Manager
+ * @authors NeverMine17, sosiska2281337
+ * @file main.cpp
+ * @brief Главный файл всей программы.
+ */
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "src/RoundObj.h"
@@ -5,6 +12,14 @@
 #include <fstream>
 #include <cmath>
 
+/**
+ * Функция для указания скилла игрока.
+ *
+ * @param player[in,out] Игрок
+ * @param skill[in,out]
+ * @warning Эта функция использует указатели, т.е ничего не возвращает
+ * @see totalSkill
+ */
 void setSkills(RoundObj *player, skills *skill) {
     if (player->name == skill->player) {
         player->setSkills(skill->skill_goalkeeper, skill->skill_defender, skill->skill_midfielder,
@@ -12,7 +27,15 @@ void setSkills(RoundObj *player, skills *skill) {
     }
 }
 
-void totalskill(RoundObj *player, unsigned int *totalskill) {
+/**
+ * Функция для вычисления общего скилла.
+ *
+ * @param[in,out] player
+ * @param[in,out] totalskill
+ * @warning Эта функция использует указатели, т.е ничего не возвращает
+ * @see setSkills
+ */
+void totalSkill(RoundObj *player, unsigned int *totalskill) {
     if (player->skill_goalkeeper >= player->skill_defender and
         player->skill_goalkeeper >= player->skill_midfielder and
         player->skill_goalkeeper >= player->skill_striker) {
@@ -30,6 +53,13 @@ void totalskill(RoundObj *player, unsigned int *totalskill) {
     }
 }
 
+/**
+ * @brief Главная функция программы
+ * Большинство кода находится здесь
+ * @warning
+ * Если схемы или комманды из файла
+ * нету в памяти то программа закрывается
+ */
 int main() {
     unsigned int a = 0;
     std::fstream sch1("../schema1.txt");
@@ -66,9 +96,6 @@ int main() {
             if (!heroimage.loadFromFile("../assets/" + team1[a] + ".png")) {
                 throw std::runtime_error("Image not found.");
             }
-
-            // player.setColor(sf::Color::Black);
-
             texture.loadFromImage(heroimage);
             player.setTexture(texture);
             player.name = team1[a];
@@ -181,11 +208,11 @@ int main() {
 
 
     for (RoundObj &player : Team1) {
-        totalskill(&player, &totalskill1);
+        totalSkill(&player, &totalskill1);
     }
 
     for (RoundObj &player : Team2) {
-        totalskill(&player, &totalskill2);
+        totalSkill(&player, &totalskill2);
     }
 
 

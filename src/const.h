@@ -1,7 +1,8 @@
-//
-// Created by Admin on 18.11.2017.
-//
-
+/**
+ * @file const.h
+ * @brief Важные константы
+ * @warning Измение любой переменной отразится на программе
+ */
 #ifndef FOOTBALLMANAGER_CONST_H
 #define FOOTBALLMANAGER_CONST_H
 

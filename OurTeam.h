@@ -1,13 +1,21 @@
+/**
+ * @file OurTeam.h
+ * @brief Файл с обьектами футболистов
+ * Название комманд зависит от текста в team1.txt и team2.txt
+ */
+
 #ifndef FOOTBALLMANAGER_OURTEAM_H
 #define FOOTBALLMANAGER_OURTEAM_H
 
 #include <vector>
 #include "src/RoundObj.h"
 #include "src/Schemas.h"
-auto SCHEME = [&mapScheme](int a){return mapScheme["SCHEME433"]->at(a);};
-const std::string mainFolder = "../assets/";
 
 unsigned int goalsRed = 0;
+/**
+ * @brief Первая комманда
+ * По умолчанию UBOGIE
+ */
 std::vector<RoundObj> Team1 = {
         RoundObj(20, "Navas"   , 0,sf::Color::Black,sf::Color::White),
         RoundObj(20, "Marcelo" , 0,sf::Color::Blue ,sf::Color::White),
@@ -23,6 +31,10 @@ std::vector<RoundObj> Team1 = {
 };
 
 unsigned int goalsBlue = 0;
+/**
+ * @brief Вторая комманда
+ * По умолчанию NIGGAZ
+ */
 std::vector<RoundObj> Team2 = {
         RoundObj(20, "Rodriguez", 0, sf::Color::Blue, sf::Color::Red),
         RoundObj(20, "Alaba"    , 0,sf::Color::Blue  ,sf::Color::Red),
