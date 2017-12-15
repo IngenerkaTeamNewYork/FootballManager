@@ -219,8 +219,8 @@ int main() {
     first.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2});
     second.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25});
 
-    sf::Text predictionfirst(std::to_string(int(totalskill1 / 20) - 43), font);
-    sf::Text predictionsecond(std::to_string(int(totalskill2 / 20 - 43)), font);
+    sf::Text predictionfirst(std::to_string(int(std::max(int(20-sqrt(totalskill1)), 0))), font);
+    sf::Text predictionsecond(std::to_string(int(std::max(int(20-sqrt(totalskill2)), 0))), font);
 
     predictionfirst.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 100});
     predictionsecond.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25 + 100});
