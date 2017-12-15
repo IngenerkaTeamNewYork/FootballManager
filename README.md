@@ -3,3 +3,15 @@
 
 `OurTeam.h` -- наши команды. 
 `src/RoundObj.h` -- класс `RoundObj`.
+
+`team1.txt` и `team2.txt` название команды.
+
+### Допустимое название имен:
+  - `REAL`
+  - `BAYERN`
+  - `ARSENAL`
+  - `CHELSEA`
+  - `NIGGAZ` - только черные
+  - `UBOGIE` - трупы
+
+Составы команд находиться в файле `.+_TEAM.txt`
