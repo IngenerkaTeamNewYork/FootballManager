@@ -1,0 +1,13 @@
+digraph "src/RoundObj.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node3 [label="src/RoundObj.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html",tooltip="Главный файл всей программы. "];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="OurTeam.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$OurTeam_8h.html",tooltip="Файл с обьектами футболистов Название комманд зависит от текста в team1.txt и team2.txt. "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="src/tests/test.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test_8cpp.html",tooltip="Тесты для проверки работоспособности программы "];
+}

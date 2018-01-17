@@ -76,6 +76,7 @@ int main() {
         team1 = *mapSquad.at(fileContents3);
     } catch (const std::out_of_range &exp) {
         std::cout << exp.what() << '\n';
+        system("pause");
         std::exit(EXIT_FAILURE);
     }
 
@@ -85,6 +86,7 @@ int main() {
         team2 = *mapSquad.at(fileContents3);
     } catch (const std::out_of_range &exp) {
         std::cout << exp.what() << '\n';
+        system("pause");
         std::exit(EXIT_FAILURE);
     }
 
@@ -102,6 +104,7 @@ int main() {
 
         } catch (std::out_of_range &exp) {
             std::cout << exp.what();
+            system("pause");
             std::exit(EXIT_FAILURE);
         }
         a++;
@@ -122,6 +125,7 @@ int main() {
 
         } catch (std::out_of_range &exp) {
             std::cout << exp.what();
+            system("pause");
             std::exit(EXIT_FAILURE);
         }
         a++;
@@ -137,6 +141,7 @@ int main() {
         schema1 = *mapScheme.at(fileContents1);
     } catch (const std::out_of_range &exp) {
         std::cout << exp.what() << '\n';
+        system("pause");
         std::exit(EXIT_FAILURE);
     }
     a = 0;
@@ -145,6 +150,7 @@ int main() {
             tmp2.move(schema1.at(a));
         } catch (const std::out_of_range &exp) {
             std::cout << exp.what() << '\n';
+            system("pause");
             std::exit(EXIT_FAILURE);
         }
         a++;
@@ -157,6 +163,7 @@ int main() {
         schema2 = *mapScheme.at(fileContents2);
     } catch (const std::out_of_range &exp) {
         std::cout << exp.what() << '\n';
+        system("pause");
         std::exit(EXIT_FAILURE);
     }
     a = 0;
@@ -165,6 +172,7 @@ int main() {
             tmp2.move({800 - schema2.at(a).x, schema2.at(a).y});
         } catch (std::out_of_range &exp) {
             std::cout << exp.what();
+            system("pause");
             std::exit(EXIT_FAILURE);
         }
         a++;
@@ -225,7 +233,13 @@ int main() {
     predictionfirst.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 100});
     predictionsecond.setPosition({FBM_X_EKRANA / 4, FBM_Y_EKRANA / 4 + FBM_Y_EKRANA / 2 + 25 + 100});
 
+    sf::Text x("", font);
+    sf::Text y("", font);
 
+    sf::Text schet("Schet:", font);
+    schet.setPosition(150, 500);
+    sf::Text prognoz("Prognoz:", font);
+    prognoz.setPosition(150, 600);
     // Главный цикл приложения
     auto current = Team1.begin();
     while (window.isOpen()) {
@@ -235,6 +249,12 @@ int main() {
             // Кроме обычного способа наше окно будет закрываться по нажатию на Escape
             if (event.type == sf::Event::Closed) {
                 window.close();
+            }
+            if (event.type == sf::Event::MouseMoved) {
+                x.setString(std::to_string(event.mouseMove.x));
+                y.setString(std::to_string(event.mouseMove.y));
+                x.setPosition(0.f, 0.f);
+                x.setPosition(100.f, 0.f);
             }
         }
         // Очистка
@@ -310,6 +330,10 @@ int main() {
         window.draw(predictionfirst);
         window.draw(predictionsecond);
         window.draw(ball);
+        window.draw(x);
+        window.draw(y);
+        window.draw(schet);
+        window.draw(prognoz);
         // Тут будут вызываться функции обновления и отрисовки объектов
         // Отрисовка
         window.display();
