@@ -3,7 +3,7 @@ project(FootballManager)
 
 set(CMAKE_CXX_STANDARD 11)
 link_libraries(sfml-graphics sfml-window sfml-system)
-add_definitions(-g -O0)
+add_definitions(-O3)
 add_executable(testfb src/tests/test.cpp src/tests/doctest.h)
 
 set(SOURCE_FILES
